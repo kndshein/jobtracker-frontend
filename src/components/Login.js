@@ -17,7 +17,7 @@ const Login = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/login", {
+      .post(props.backendUrl + "/login", {
         login_info: {
           email: formData.email,
           password: formData.password,
