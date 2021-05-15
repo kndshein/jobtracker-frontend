@@ -8,7 +8,7 @@ const Login = (props) => {
   };
 
   const [formData, setFormData] = React.useState(emptyLoginFormData);
-  const [loginSuccess, setLoginSuccess] = React.useState(true);
+  const [loginMessage, setLoginMessage] = React.useState("");
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -24,12 +24,8 @@ const Login = (props) => {
         },
       })
       .then((data) => {
-        if (data.data.token) {
-          sessionStorage.setItem("token", data.data.token);
-        } else {
-          console.log(data);
-          setLoginSuccess(false);
-        }
+        setLoginMessage(`${data.data.message}`);
+        sessionStorage.setItem("token", data.data.token);
       })
       .catch((error) => {
         console.log(error.response);
@@ -60,7 +56,7 @@ const Login = (props) => {
         />
         <input className="login-btn" type="submit" value="Login" />
       </form>
-      {!loginSuccess && <div>POOP, your login failed</div>}
+      <div className="login-message">{loginMessage}</div>
     </div>
   );
 };
