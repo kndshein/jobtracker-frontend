@@ -31,12 +31,8 @@ const Register = (props) => {
           },
         })
         .then((data) => {
-          if (data.data.token) {
-            setRegisterMessage("Registration successful.");
-            sessionStorage.setItem("token", data.data.token);
-          } else {
-            setRegisterMessage("Username is taken.");
-          }
+          setRegisterMessage(data.data.message);
+          sessionStorage.setItem("token", data.data.token);
         })
         .catch((error) => {
           console.log(error.response);
@@ -78,7 +74,7 @@ const Register = (props) => {
         <input
           className="form-password-confirm"
           type="text"
-          name="password-confirm"
+          name="passwordConfirm"
           placeholder="password confirmation"
           required
           value={formData.passwordConfirm}
