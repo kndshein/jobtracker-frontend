@@ -19,7 +19,7 @@ function App() {
             <HomePage backendUrl={backendUrl} />
           </Route>
           <Route path="/jobs">
-            <JobPage />
+            <JobPage backendUrl={backendUrl} />
           </Route>
         </Switch>
       </div>
