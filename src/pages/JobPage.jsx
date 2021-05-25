@@ -2,18 +2,20 @@ import React from "react";
 import axios from "axios";
 
 import Job from "../components/Job";
+import JobForm from "../components/JobForm";
 
 const JobPage = (props) => {
   const [jobList, setJobList] = React.useState(null);
 
   React.useEffect(() => {
     const getProfile = () => {
-      axios
-        .get(props.backendUrl + "/profile", {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+      axios({
+        method: "get",
+        url: props.backendUrl + "/profile",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
         .then((data) => {
           console.log(data.data.jobs);
           setJobList(data.data.jobs);
@@ -34,6 +36,7 @@ const JobPage = (props) => {
           return <Job key={index} job={job} />;
         })}
       </div>
+      <JobForm />
     </>
   );
 };
