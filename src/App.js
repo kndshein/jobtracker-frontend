@@ -1,30 +1,29 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.scss";
 
-import Login from "./components/Login";
-import Register from "./components/Register";
+// Component imports
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import JobPage from "./pages/JobPage/JobPage.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 
 const backendUrl = "http://localhost:3000";
 
 function App() {
-  const [loginOrRegister, setLoginOrRegister] = React.useState("");
-
-  const handleLoginOrRegister = (input) => {
-    setLoginOrRegister(`${input}`);
-  };
-
   return (
-    <div className="App">
-      <div className="login-or-register">
-        <button onClick={() => handleLoginOrRegister("Login")}>Log in</button>
-        <button onClick={() => handleLoginOrRegister("Register")}>
-          Get Started
-        </button>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <HomePage backendUrl={backendUrl} />
+          </Route>
+          <Route path="/jobs">
+            <JobPage backendUrl={backendUrl} />
+          </Route>
+        </Switch>
       </div>
-      <div className="login-or-register-box"></div>
-      {loginOrRegister === "Login" && <Login backendUrl={backendUrl} />}
-      {loginOrRegister === "Register" && <Register backendUrl={backendUrl} />}
-    </div>
+    </Router>
   );
 }
 
