@@ -17,7 +17,6 @@ const JobPage = (props) => {
         },
       })
         .then((data) => {
-          console.log(data.data.jobs);
           setJobList(data.data.jobs);
         })
         .catch((error) => {
@@ -36,7 +35,7 @@ const JobPage = (props) => {
           return <Job key={index} job={job} />;
         })}
       </div>
-      <JobForm />
+      <JobForm backendUrl={props.backendUrl} />
     </>
   );
 };
