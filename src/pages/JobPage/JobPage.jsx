@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-import Job from "../components/Job";
-import JobForm from "../components/JobForm";
+import Job from "../../components/Job/Job";
+import JobForm from "../../components/JobForm/JobForm";
 
 const JobPage = (props) => {
   const [jobList, setJobList] = React.useState(null);
