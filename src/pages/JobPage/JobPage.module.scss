@@ -1,0 +1,7 @@
+@import "../../styles/variables.scss";
+
+.jobs_container {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+}

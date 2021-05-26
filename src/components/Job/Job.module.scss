@@ -1,0 +1,14 @@
+@import "../../styles/variables.scss";
+
+.job_container {
+  display: flex;
+  background-color: $job-container-color;
+  gap: 15px;
+
+  .logo_container {
+    background-color: blue;
+    .logo {
+      width: 20px;
+    }
+  }
+}
