@@ -18,6 +18,7 @@ const JobPage = (props) => {
         },
       })
         .then((data) => {
+          console.log(data);
           setJobList(data.data.jobs);
         })
         .catch((error) => {
