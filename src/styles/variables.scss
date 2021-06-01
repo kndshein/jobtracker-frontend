@@ -1,0 +1,9 @@
+// Colors
+$job-container-color: #dfdfdf;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -38,6 +38,7 @@ const JobForm = (props) => {
           job_description: formData.job_description,
           resume: formData.resume,
           coverletter: formData.coverletter,
+          status: formData.status,
         },
       },
     }).catch((error) => {

@@ -1,0 +1,10 @@
+@import "../../styles/variables.scss";
+
+.jobs_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  width: 80%;
+  margin: 0 auto;
+}
