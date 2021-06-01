@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Job.module.scss";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 import Stars from "../Stars/Stars";
 import JobExpanded from "./JobAccordion/JobAccordion";
@@ -46,12 +46,21 @@ const Job = ({ job, backendUrl }) => {
           <Stars star={job.excitement} backendUrl={backendUrl} jobId={job.id} />
         </div>
         <div className={styles.arrow}>
-          <FaAngleDown
-            size={25}
-            onClick={() => {
-              handleExpand(job.id);
-            }}
-          />
+          {expandedData ? (
+            <FaAngleUp
+              size={25}
+              onClick={() => {
+                handleExpand(job.id);
+              }}
+            />
+          ) : (
+            <FaAngleDown
+              size={25}
+              onClick={() => {
+                handleExpand(job.id);
+              }}
+            />
+          )}
         </div>
       </div>
       {expandedData && <JobExpanded expandedData={expandedData} />}
