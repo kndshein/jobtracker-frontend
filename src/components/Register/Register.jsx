@@ -21,15 +21,18 @@ const Register = (props) => {
     if (formData.password !== formData.passwordConfirm) {
       setRegisterMessage("Passwords do not match.");
     } else {
-      axios
-        .post(props.backendUrl + "/register", {
+      axios({
+        method: "post",
+        url: props.backendUrl + "/register",
+        data: {
           registration_info: {
             name: formData.name,
             email: formData.email,
             password: formData.password,
             password_confirmation: formData.passwordConfirm,
           },
-        })
+        },
+      })
         .then((data) => {
           setRegisterMessage(data.data.message);
           sessionStorage.setItem("token", data.data.token);

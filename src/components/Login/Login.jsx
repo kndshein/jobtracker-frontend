@@ -16,13 +16,16 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post(props.backendUrl + "/login", {
+    axios({
+      method: "post",
+      url: props.backendUrl + "/login",
+      data: {
         login_info: {
           email: formData.email,
           password: formData.password,
         },
-      })
+      },
+    })
       .then((data) => {
         setLoginMessage(`${data.data.message}`);
         sessionStorage.setItem("token", data.data.token);

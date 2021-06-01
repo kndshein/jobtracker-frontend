@@ -3,22 +3,30 @@ import styles from "./Job.module.scss";
 import { FaAngleDown } from "react-icons/fa";
 
 import Stars from "../Stars/Stars";
-import JobExpanded from "../JobExpanded/JobExpanded";
+import JobExpanded from "./JobAccordion/JobAccordion";
 import axios from "axios";
 
 const Job = ({ job, backendUrl }) => {
   const [expandedData, setExpandedData] = React.useState();
 
   const handleExpand = (id) => {
-    axios({
-      method: "get",
-      url: backendUrl + "/job/" + id,
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    }).then((data) => {
-      setExpandedData(data.data);
-    });
+    if (expandedData) {
+      setExpandedData();
+    } else {
+      axios({
+        method: "get",
+        url: backendUrl + "/job/" + id,
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
+        .then((data) => {
+          setExpandedData(data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
