@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Job.module.scss";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { expandAccordion } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 import JobExpanded from "./JobAccordion/JobAccordion";
-import axios from "axios";
 
 const Job = ({ job, backendUrl }) => {
   const [expandedData, setExpandedData] = React.useState();
@@ -13,19 +13,7 @@ const Job = ({ job, backendUrl }) => {
     if (expandedData) {
       setExpandedData();
     } else {
-      axios({
-        method: "get",
-        url: backendUrl + "/job/" + id,
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      })
-        .then((data) => {
-          setExpandedData(data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      expandAccordion(backendUrl, setExpandedData, id);
     }
   };
 

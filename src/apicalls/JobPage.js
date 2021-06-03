@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// JobForm.jsx
 export const createJob = (backendUrl, formData) => {
   axios({
     method: "post",
@@ -25,6 +26,7 @@ export const createJob = (backendUrl, formData) => {
   });
 };
 
+// Stars.jsx
 export const starUpdate = (backendUrl, jobId, setState, num) => {
   axios({
     method: "put",
@@ -43,5 +45,22 @@ export const starUpdate = (backendUrl, jobId, setState, num) => {
     })
     .catch((error) => {
       console.log(error);
+    });
+};
+
+// Job.jsx
+export const expandAccordion = (backendUrl, setState, id) => {
+  axios({
+    method: "get",
+    url: backendUrl + "/job/" + id,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((data) => {
+      setState(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
