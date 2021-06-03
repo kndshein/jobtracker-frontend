@@ -24,3 +24,24 @@ export const createJob = (backendUrl, formData) => {
     console.log(error);
   });
 };
+
+export const starUpdate = (backendUrl, jobId, setState, num) => {
+  axios({
+    method: "put",
+    url: backendUrl + "/job/" + jobId,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    data: {
+      job_info: {
+        excitement: num,
+      },
+    },
+  })
+    .then((data) => {
+      setState(data.data.excitement);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

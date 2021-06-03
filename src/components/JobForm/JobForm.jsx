@@ -1,6 +1,5 @@
 import React from "react";
-
-import { createJob } from "../../APICalls";
+import { createJob } from "../../apicalls/JobPage";
 
 const JobForm = (props) => {
   const emptyFormData = {
