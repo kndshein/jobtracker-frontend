@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { createJob } from "../../apicalls/JobPage";
 
 const JobForm = (props) => {
   const emptyFormData = {
@@ -21,29 +21,10 @@ const JobForm = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = () => {
-    axios({
-      method: "post",
-      url: props.backendUrl + "/job/create",
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-      data: {
-        job_info: {
-          job_title: formData.job_title,
-          company_name: formData.company_name,
-          job_industry: formData.job_industry,
-          location_city: formData.location_city,
-          location_state: formData.location_state,
-          job_description: formData.job_description,
-          resume: formData.resume,
-          coverletter: formData.coverletter,
-          status: formData.status,
-        },
-      },
-    }).catch((error) => {
-      console.log(error);
-    });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await createJob(formData);
+    props.getProfile();
   };
 
   return (
@@ -56,6 +37,7 @@ const JobForm = (props) => {
             name="job_title"
             placeholder="Job Title"
             value={formData.job_title}
+            required
           />
           <input
             onChange={handleChange}
@@ -63,6 +45,7 @@ const JobForm = (props) => {
             name="company_name"
             placeholder="Company Name"
             value={formData.company_name}
+            required
           />
           <input
             onChange={handleChange}
@@ -70,6 +53,7 @@ const JobForm = (props) => {
             name="job_industry"
             placeholder="Job Industry"
             value={formData.job_industry}
+            required
           />
           <input
             onChange={handleChange}
@@ -77,6 +61,7 @@ const JobForm = (props) => {
             name="location_city"
             placeholder="City"
             value={formData.location_city}
+            required
           />
           <input
             onChange={handleChange}
@@ -84,6 +69,7 @@ const JobForm = (props) => {
             name="location_state"
             placeholder="State"
             value={formData.location_state}
+            required
           />
           <textarea
             onChange={handleChange}
@@ -91,6 +77,7 @@ const JobForm = (props) => {
             name="job_description"
             placeholder="Job Description"
             value={formData.job_description}
+            required
           />
           <input
             onChange={handleChange}
@@ -98,6 +85,7 @@ const JobForm = (props) => {
             name="status"
             placeholder="Status"
             value={formData.status}
+            required
           />
           <input
             onChange={handleChange}
@@ -105,6 +93,7 @@ const JobForm = (props) => {
             name="resume"
             placeholder="Resume"
             value={formData.resume}
+            required
           />
           <input
             onChange={handleChange}
@@ -112,6 +101,7 @@ const JobForm = (props) => {
             name="coverletter"
             placeholder="Cover Letter"
             value={formData.coverletter}
+            required
           />
           <input type="submit" />
         </form>

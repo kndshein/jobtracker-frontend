@@ -8,24 +8,24 @@ import JobForm from "../../components/JobForm/JobForm";
 const JobPage = (props) => {
   const [jobList, setJobList] = React.useState(null);
 
-  React.useEffect(() => {
-    const getProfile = () => {
-      axios({
-        method: "get",
-        url: props.backendUrl + "/profile",
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
+  const getProfile = () => {
+    axios({
+      method: "get",
+      url: props.backendUrl + "/profile",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        setJobList(data.data.jobs);
       })
-        .then((data) => {
-          console.log(data);
-          setJobList(data.data.jobs);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-    };
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
 
+  React.useEffect(() => {
     getProfile();
   }, [props.backendUrl]);
 
@@ -37,7 +37,7 @@ const JobPage = (props) => {
           return <Job key={index} job={job} backendUrl={props.backendUrl} />;
         })}
       </div>
-      <JobForm backendUrl={props.backendUrl} />
+      <JobForm backendUrl={props.backendUrl} getProfile={getProfile} />
     </>
   );
 };

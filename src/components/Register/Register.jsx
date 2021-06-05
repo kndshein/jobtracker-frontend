@@ -16,7 +16,7 @@ const Register = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, formData) => {
     event.preventDefault();
     if (formData.password !== formData.passwordConfirm) {
       setRegisterMessage("Passwords do not match.");

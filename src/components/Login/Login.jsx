@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import { login } from "../../apicalls/HomePage";
+
 const Login = (props) => {
   const emptyLoginFormData = {
     email: "",
@@ -16,23 +18,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios({
-      method: "post",
-      url: props.backendUrl + "/login",
-      data: {
-        login_info: {
-          email: formData.email,
-          password: formData.password,
-        },
-      },
-    })
-      .then((data) => {
-        setLoginMessage(`${data.data.message}`);
-        sessionStorage.setItem("token", data.data.token);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+    login(setLoginMessage, formData);
   };
 
   return (
