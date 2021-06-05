@@ -1,7 +1,6 @@
 import React from "react";
 
 const JobExpanded = (props) => {
-  console.log(props.expandedData);
   const emptyFormData = {
     job_title: "",
     company_name: "",

@@ -1,6 +1,23 @@
 import axios from "axios";
 const backendUrl = "http://localhost:3000";
 
+// JobPage.jsx
+export const getProfile = (setState) => {
+  axios({
+    method: "get",
+    url: backendUrl + "/profile",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((data) => {
+      setState(data.data.jobs);
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
 // JobForm.jsx
 export const createJob = (formData) => {
   axios({

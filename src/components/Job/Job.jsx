@@ -24,6 +24,7 @@ const Job = ({ job, backendUrl }) => {
         <div className={styles.logo_container}>
           <img
             className={styles.logo}
+            alt="spotify logo"
             src="//logo.clearbit.com/spotify.com?size=80&greyscale=true"
           />
         </div>
