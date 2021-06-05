@@ -1,6 +1,8 @@
 import axios from "axios";
+const backendUrl = "http://localhost:3000";
 
-export const login = (backendUrl, setState, formData) => {
+// Login.jsx
+export const login = (setState, formData) => {
   axios({
     method: "post",
     url: backendUrl + "/login",

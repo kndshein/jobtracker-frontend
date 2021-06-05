@@ -13,7 +13,7 @@ const Job = ({ job, backendUrl }) => {
     if (expandedData) {
       setExpandedData();
     } else {
-      expandAccordion(backendUrl, setExpandedData, id);
+      expandAccordion(setExpandedData, id);
     }
   };
 

@@ -6,7 +6,7 @@ const Stars = (props) => {
   const [excitement, setExcitement] = React.useState(props.star);
 
   const handleUpdate = (num) => {
-    starUpdate(props.backendUrl, props.jobId, setExcitement, num);
+    starUpdate(props.jobId, setExcitement, num);
   };
 
   return (

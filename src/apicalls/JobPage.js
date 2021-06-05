@@ -1,7 +1,8 @@
 import axios from "axios";
+const backendUrl = "http://localhost:3000";
 
 // JobForm.jsx
-export const createJob = (backendUrl, formData) => {
+export const createJob = (formData) => {
   axios({
     method: "post",
     url: backendUrl + "/job/create",
@@ -27,7 +28,7 @@ export const createJob = (backendUrl, formData) => {
 };
 
 // Stars.jsx
-export const starUpdate = (backendUrl, jobId, setState, num) => {
+export const starUpdate = (jobId, setState, num) => {
   axios({
     method: "put",
     url: backendUrl + "/job/" + jobId,
@@ -49,7 +50,7 @@ export const starUpdate = (backendUrl, jobId, setState, num) => {
 };
 
 // Job.jsx
-export const expandAccordion = (backendUrl, setState, id) => {
+export const expandAccordion = (setState, id) => {
   axios({
     method: "get",
     url: backendUrl + "/job/" + id,

@@ -23,7 +23,7 @@ const JobForm = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await createJob(props.backendUrl, formData);
+    await createJob(formData);
     props.getProfile();
   };
 
