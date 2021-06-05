@@ -1,6 +1,23 @@
 import axios from "axios";
 const backendUrl = "http://localhost:3000";
 
+// JobPage.jsx
+export const getProfile = (setState) => {
+  axios({
+    method: "get",
+    url: backendUrl + "/profile",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((data) => {
+      setState(data.data.jobs);
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
 // JobForm.jsx
 export const createJob = (formData) => {
   axios({
@@ -59,7 +76,24 @@ export const expandAccordion = (setState, id) => {
     },
   })
     .then((data) => {
+      console.log(data.data);
       setState(data.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const deleteJob = (setState, id) => {
+  axios({
+    method: "delete",
+    url: backendUrl + "/job/" + id,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then(() => {
+      getProfile(setState);
     })
     .catch((err) => {
       console.log(err);

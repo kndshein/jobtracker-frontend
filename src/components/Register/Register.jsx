@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { register } from "../../apicalls/HomePage";
 
 const Register = (props) => {
   const emptyRegisterFormData = {
@@ -21,25 +21,7 @@ const Register = (props) => {
     if (formData.password !== formData.passwordConfirm) {
       setRegisterMessage("Passwords do not match.");
     } else {
-      axios({
-        method: "post",
-        url: props.backendUrl + "/register",
-        data: {
-          registration_info: {
-            name: formData.name,
-            email: formData.email,
-            password: formData.password,
-            password_confirmation: formData.passwordConfirm,
-          },
-        },
-      })
-        .then((data) => {
-          setRegisterMessage(data.data.message);
-          sessionStorage.setItem("token", data.data.token);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+      register(setRegisterMessage, formData);
     }
   };
 

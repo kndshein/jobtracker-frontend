@@ -3,7 +3,7 @@ import React from "react";
 import Login from "../../components/Login/Login";
 import Register from "../../components/Register/Register";
 
-const HomePage = ({ backendUrl }) => {
+const HomePage = (props) => {
   const [loginOrRegister, setLoginOrRegister] = React.useState("");
 
   const handleLoginOrRegister = (input) => {
@@ -19,8 +19,8 @@ const HomePage = ({ backendUrl }) => {
         </button>
       </div>
       <div className="login-or-register-box">
-        {loginOrRegister === "Login" && <Login backendUrl={backendUrl} />}
-        {loginOrRegister === "Register" && <Register backendUrl={backendUrl} />}
+        {loginOrRegister === "Login" && <Login />}
+        {loginOrRegister === "Register" && <Register />}
       </div>
     </div>
   );

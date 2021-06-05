@@ -6,7 +6,7 @@ import { expandAccordion } from "../../apicalls/JobPage";
 import Stars from "../Stars/Stars";
 import JobExpanded from "./JobAccordion/JobAccordion";
 
-const Job = ({ job, backendUrl }) => {
+const Job = ({ job, setJobList }) => {
   const [expandedData, setExpandedData] = React.useState();
 
   const handleExpand = (id) => {
@@ -24,6 +24,7 @@ const Job = ({ job, backendUrl }) => {
         <div className={styles.logo_container}>
           <img
             className={styles.logo}
+            alt="spotify logo"
             src="//logo.clearbit.com/spotify.com?size=80&greyscale=true"
           />
         </div>
@@ -31,7 +32,7 @@ const Job = ({ job, backendUrl }) => {
         <div className={styles.status}>{job.status}</div>
         <div className={styles.excitement}>{job.excitement}</div>
         <div className={styles.excitement}>
-          <Stars star={job.excitement} backendUrl={backendUrl} jobId={job.id} />
+          <Stars star={job.excitement} jobId={job.id} />
         </div>
         <div className={styles.arrow}>
           {expandedData ? (
@@ -51,7 +52,13 @@ const Job = ({ job, backendUrl }) => {
           )}
         </div>
       </div>
-      {expandedData && <JobExpanded expandedData={expandedData} />}
+      {expandedData && (
+        <JobExpanded
+          expandedData={expandedData}
+          setJobList={setJobList}
+          handleExpand={handleExpand}
+        />
+      )}
     </>
   );
 };
