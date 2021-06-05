@@ -6,7 +6,7 @@ import { expandAccordion } from "../../apicalls/JobPage";
 import Stars from "../Stars/Stars";
 import JobExpanded from "./JobAccordion/JobAccordion";
 
-const Job = ({ job, backendUrl, setJobList }) => {
+const Job = ({ job, setJobList }) => {
   const [expandedData, setExpandedData] = React.useState();
 
   const handleExpand = (id) => {
@@ -32,7 +32,7 @@ const Job = ({ job, backendUrl, setJobList }) => {
         <div className={styles.status}>{job.status}</div>
         <div className={styles.excitement}>{job.excitement}</div>
         <div className={styles.excitement}>
-          <Stars star={job.excitement} backendUrl={backendUrl} jobId={job.id} />
+          <Stars star={job.excitement} jobId={job.id} />
         </div>
         <div className={styles.arrow}>
           {expandedData ? (

@@ -1,7 +1,7 @@
 import React from "react";
 import { createJob, getProfile } from "../../apicalls/JobPage";
 
-const JobForm = (props) => {
+const JobForm = ({ setJobList }) => {
   const emptyFormData = {
     job_title: "",
     company_name: "",
@@ -24,7 +24,7 @@ const JobForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createJob(formData);
-    getProfile(props.setJobList);
+    getProfile(setJobList);
   };
 
   return (

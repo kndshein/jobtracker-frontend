@@ -17,17 +17,10 @@ const JobPage = (props) => {
       <div>JOBS</div>
       <div className={styles.jobs_container}>
         {jobList?.map((job, index) => {
-          return (
-            <Job
-              key={index}
-              job={job}
-              backendUrl={props.backendUrl}
-              setJobList={setJobList}
-            />
-          );
+          return <Job key={index} job={job} setJobList={setJobList} />;
         })}
       </div>
-      <JobForm backendUrl={props.backendUrl} setJobList={setJobList} />
+      <JobForm setJobList={setJobList} />
     </>
   );
 };

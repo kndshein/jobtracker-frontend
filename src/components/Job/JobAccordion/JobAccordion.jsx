@@ -1,7 +1,7 @@
 import React from "react";
 import { deleteJob } from "../../../apicalls/JobPage";
 
-const JobExpanded = (props) => {
+const JobExpanded = ({ expandedData, handleExpand, setJobList }) => {
   const emptyFormData = {
     job_title: "",
     company_name: "",
@@ -13,14 +13,12 @@ const JobExpanded = (props) => {
   const [formData, setFormData] = React.useState(emptyFormData);
 
   React.useEffect(() => {
-    !props.expandedData
-      ? setFormData(emptyFormData)
-      : setFormData(props.expandedData);
-  }, [props.expandedData]);
+    !expandedData ? setFormData(emptyFormData) : setFormData(expandedData);
+  }, [expandedData]);
 
   const handleDelete = async () => {
-    await deleteJob(props.setJobList, formData.id);
-    props.handleExpand();
+    await deleteJob(setJobList, formData.id);
+    handleExpand();
   };
 
   return (

@@ -2,16 +2,16 @@ import React from "react";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import { starUpdate } from "../../apicalls/JobPage";
 
-const Stars = (props) => {
+const Stars = ({ jobId, star }) => {
   const [excitement, setExcitement] = React.useState();
 
   const handleUpdate = (num) => {
-    starUpdate(props.jobId, setExcitement, num);
+    starUpdate(jobId, setExcitement, num);
   };
 
   React.useEffect(() => {
-    setExcitement(props.star);
-  }, [props.star]);
+    setExcitement(star);
+  }, [star]);
 
   return (
     <>
