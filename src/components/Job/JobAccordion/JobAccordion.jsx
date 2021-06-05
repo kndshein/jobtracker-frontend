@@ -1,4 +1,5 @@
 import React from "react";
+import { deleteJob } from "../../../apicalls/JobPage";
 
 const JobExpanded = (props) => {
   const emptyFormData = {
@@ -17,6 +18,11 @@ const JobExpanded = (props) => {
       : setFormData(props.expandedData);
   }, [props.expandedData]);
 
+  const handleDelete = async () => {
+    await deleteJob(props.setJobList, formData.id);
+    props.handleExpand();
+  };
+
   return (
     <div className="job-expanded-container">
       <div>{formData.job_title}</div>
@@ -25,6 +31,7 @@ const JobExpanded = (props) => {
       <div>{formData.excitement}</div>
       <div>{formData.resume}</div>
       <div>{formData.coverletter}</div>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };
