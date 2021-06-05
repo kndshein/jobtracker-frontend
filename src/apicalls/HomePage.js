@@ -21,3 +21,26 @@ export const login = (setState, formData) => {
       console.log(error.response);
     });
 };
+
+// Register.jsx
+export const register = (setState, formData) => {
+  axios({
+    method: "post",
+    url: backendUrl + "/register",
+    data: {
+      registration_info: {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        password_confirmation: formData.passwordConfirm,
+      },
+    },
+  })
+    .then((data) => {
+      setState(data.data.message);
+      sessionStorage.setItem("token", data.data.token);
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
