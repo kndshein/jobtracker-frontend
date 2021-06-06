@@ -78,29 +78,12 @@ export const starUpdate = (jobId, setState, num) => {
       },
     },
   })
-    .then((data) => {
-      setState(data.data.excitement);
+    .then(() => {
+      getJob(setState, jobId);
+      // setState(data.data.excitement);
     })
     .catch((error) => {
       console.log(error);
-    });
-};
-
-// Job.jsx
-export const expandAccordion = (setState, id) => {
-  axios({
-    method: "get",
-    url: backendUrl + "/job/" + id,
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  })
-    .then((data) => {
-      console.log(data.data);
-      setState(data.data);
-    })
-    .catch((err) => {
-      console.log(err);
     });
 };
 

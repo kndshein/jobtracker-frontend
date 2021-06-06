@@ -1,30 +1,26 @@
 import React from "react";
 import styles from "./Job.module.scss";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { expandAccordion, getJob } from "../../apicalls/JobPage";
+import { getJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 import JobExpanded from "../JobAccordion/JobAccordion";
 
 const Job = ({ jobId, setJobList }) => {
-  const [expandedData, setExpandedData] = React.useState();
+  const [accordionOpen, setAccordionOpen] = React.useState(false);
   const [job, setJob] = React.useState();
 
-  const handleGetJob = () => {
-    getJob(setJob, jobId);
-  };
-
   const handleExpand = (id) => {
-    if (expandedData) {
-      setExpandedData();
-    } else {
-      expandAccordion(setExpandedData, id);
-    }
+    accordionOpen ? setAccordionOpen(false) : setAccordionOpen(true);
   };
 
   React.useEffect(() => {
+    const handleGetJob = () => {
+      getJob(setJob, jobId);
+    };
+
     handleGetJob();
-  }, []);
+  }, [jobId]);
 
   return (
     <>
@@ -44,17 +40,23 @@ const Job = ({ jobId, setJobList }) => {
         <div className={styles.status}>{job?.status}</div>
         <div className={styles.excitement}>{job?.excitement}</div>
         <div className={styles.excitement}>
-          <Stars star={job?.excitement} jobId={job?.id} clickable={false} />
+          <Stars
+            star={job?.excitement}
+            jobId={job?.id}
+            clickable={false}
+            setJob={setJob}
+          />
         </div>
         <div className={styles.arrow}>
-          {expandedData ? <FaAngleUp size={25} /> : <FaAngleDown size={25} />}
+          {accordionOpen ? <FaAngleUp size={25} /> : <FaAngleDown size={25} />}
         </div>
       </div>
-      {expandedData && (
+      {accordionOpen && (
         <JobExpanded
-          expandedData={expandedData}
+          job={job}
           setJobList={setJobList}
           handleExpand={handleExpand}
+          setJob={setJob}
         />
       )}
     </>

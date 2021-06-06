@@ -3,7 +3,7 @@ import { deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 
-const JobExpanded = ({ expandedData, handleExpand, setJobList }) => {
+const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
   const emptyFormData = {
     job_title: "",
     company_name: "",
@@ -15,8 +15,8 @@ const JobExpanded = ({ expandedData, handleExpand, setJobList }) => {
   const [formData, setFormData] = React.useState(emptyFormData);
 
   React.useEffect(() => {
-    !expandedData ? setFormData(emptyFormData) : setFormData(expandedData);
-  }, [expandedData]);
+    setFormData(job);
+  }, [job]);
 
   const handleDelete = async () => {
     await deleteJob(setJobList, formData.id);
@@ -29,7 +29,12 @@ const JobExpanded = ({ expandedData, handleExpand, setJobList }) => {
 
   return (
     <div className="job-expanded-container">
-      <Stars star={formData.excitement} jobId={formData.id} clickable={true} />
+      <Stars
+        star={formData.excitement}
+        jobId={formData.id}
+        clickable={true}
+        setJob={setJob}
+      />
       <form>
         <input
           onChange={handleOnChange}
