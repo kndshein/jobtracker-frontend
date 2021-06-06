@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteJob } from "../../apicalls/JobPage";
+import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 
@@ -19,13 +19,17 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const handleOnBlur = (event) => {
+    updateForm(job.id, event.target.name, event.target.value, setJob);
+  };
+
   return (
     <>
       {formData && (
         <div className="job-expanded-container">
           <Stars
             star={formData.excitement}
-            jobId={formData.id}
+            jobId={job.id}
             clickable={true}
             setJob={setJob}
           />
@@ -34,16 +38,19 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
               onChange={handleOnChange}
               name="job_title"
               value={formData.job_title}
+              onBlur={handleOnBlur}
             />
             <input
               onChange={handleOnChange}
               name="company_name"
               value={formData.company_name}
+              onBlur={handleOnBlur}
             />
             <input
               onChange={handleOnChange}
               name="job_description"
               value={formData.job_description}
+              onBlur={handleOnBlur}
             />
             <input
               onChange={handleOnChange}
@@ -54,19 +61,15 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
               onChange={handleOnChange}
               name="resume"
               value={formData.resume}
+              onBlur={handleOnBlur}
             />
             <input
               onChange={handleOnChange}
               name="coverletter"
               value={formData.coverletter}
+              onBlur={handleOnBlur}
             />
           </form>
-          <div>{formData.job_title}</div>
-          <div>{formData.company_name}</div>
-          <div>{formData.job_description}</div>
-          <div>{formData.excitement}</div>
-          <div>{formData.resume}</div>
-          <div>{formData.coverletter}</div>
           <button onClick={handleDelete}>Delete</button>
         </div>
       )}

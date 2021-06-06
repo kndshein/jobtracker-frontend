@@ -1,11 +1,11 @@
 import React from "react";
 import { BsStarFill, BsStar } from "react-icons/bs";
-import { starUpdate } from "../../apicalls/JobPage";
+import { updateStar } from "../../apicalls/JobPage";
 
 const Stars = ({ jobId, star, clickable, setJob }) => {
   const handleUpdate = (num) => {
     if (clickable) {
-      starUpdate(jobId, setJob, num);
+      updateStar(jobId, setJob, num);
     }
   };
 
