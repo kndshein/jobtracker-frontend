@@ -1,44 +1,38 @@
 import React from "react";
 import { BsStarFill, BsStar } from "react-icons/bs";
-import { starUpdate } from "../../apicalls/JobPage";
+import { updateStar } from "../../apicalls/JobPage";
 
-const Stars = ({ jobId, star, clickable }) => {
-  const [excitement, setExcitement] = React.useState();
-
+const Stars = ({ jobId, star, clickable, setJob }) => {
   const handleUpdate = (num) => {
     if (clickable) {
-      starUpdate(jobId, setExcitement, num);
+      updateStar(jobId, setJob, num);
     }
   };
-
-  React.useEffect(() => {
-    setExcitement(star);
-  }, [star]);
 
   return (
     <>
       <div>
-        {excitement >= 1 ? (
+        {star >= 1 ? (
           <BsStarFill onClick={() => handleUpdate(1)} />
         ) : (
           <BsStar onClick={() => handleUpdate(1)} />
         )}
-        {excitement >= 2 ? (
+        {star >= 2 ? (
           <BsStarFill onClick={() => handleUpdate(2)} />
         ) : (
           <BsStar onClick={() => handleUpdate(2)} />
         )}
-        {excitement >= 3 ? (
+        {star >= 3 ? (
           <BsStarFill onClick={() => handleUpdate(3)} />
         ) : (
           <BsStar onClick={() => handleUpdate(3)} />
         )}
-        {excitement >= 4 ? (
+        {star >= 4 ? (
           <BsStarFill onClick={() => handleUpdate(4)} />
         ) : (
           <BsStar onClick={() => handleUpdate(4)} />
         )}
-        {excitement >= 5 ? (
+        {star >= 5 ? (
           <BsStarFill onClick={() => handleUpdate(5)} />
         ) : (
           <BsStar onClick={() => handleUpdate(5)} />

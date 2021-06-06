@@ -65,7 +65,7 @@ export const createJob = (setState, formData) => {
 };
 
 // Stars.jsx
-export const starUpdate = (jobId, setState, num) => {
+export const updateStar = (jobId, setState, num) => {
   axios({
     method: "put",
     url: backendUrl + "/job/" + jobId,
@@ -78,30 +78,30 @@ export const starUpdate = (jobId, setState, num) => {
       },
     },
   })
-    .then((data) => {
-      setState(data.data.excitement);
+    .then(() => {
+      getJob(setState, jobId);
+      // setState(data.data.excitement);
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => console.log(error));
 };
 
-// Job.jsx
-export const expandAccordion = (setState, id) => {
+export const updateForm = (jobId, key, value, setState) => {
   axios({
-    method: "get",
-    url: backendUrl + "/job/" + id,
+    method: "put",
+    url: backendUrl + "/job/" + jobId,
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
+    data: {
+      job_info: {
+        [key]: value,
+      },
+    },
   })
-    .then((data) => {
-      console.log(data.data);
-      setState(data.data);
+    .then(() => {
+      getJob(setState, jobId);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((error) => console.log(error));
 };
 
 export const deleteJob = (setState, id) => {
