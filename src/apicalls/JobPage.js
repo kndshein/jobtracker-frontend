@@ -18,8 +18,24 @@ export const getProfile = (setState) => {
     });
 };
 
+export const getJob = (setState, id) => {
+  axios({
+    method: "get",
+    url: backendUrl + "/job/" + id,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((data) => {
+      setState(data.data);
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
 // JobForm.jsx
-export const createJob = (formData) => {
+export const createJob = (setState, formData) => {
   axios({
     method: "post",
     url: backendUrl + "/job/create",
@@ -39,9 +55,13 @@ export const createJob = (formData) => {
         status: formData.status,
       },
     },
-  }).catch((error) => {
-    console.log(error);
-  });
+  })
+    .then(() => {
+      getProfile(setState);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 // Stars.jsx
