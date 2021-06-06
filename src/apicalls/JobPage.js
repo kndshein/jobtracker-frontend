@@ -19,7 +19,7 @@ export const getProfile = (setState) => {
 };
 
 // JobForm.jsx
-export const createJob = (formData) => {
+export const createJob = (setState, formData) => {
   axios({
     method: "post",
     url: backendUrl + "/job/create",
@@ -39,9 +39,13 @@ export const createJob = (formData) => {
         status: formData.status,
       },
     },
-  }).catch((error) => {
-    console.log(error);
-  });
+  })
+    .then(() => {
+      getProfile(setState);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 // Stars.jsx
