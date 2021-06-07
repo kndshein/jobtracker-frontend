@@ -11,7 +11,8 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
     setFormData(job);
   }, [job]);
 
-  const handleDelete = async () => {
+  const handleDelete = async (event) => {
+    event.preventDefault();
     await deleteJob(setJobList, formData.id);
     handleExpand();
   };
@@ -27,10 +28,10 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
   return (
     <>
       {formData && (
-        <form className={styles.job_expanded_container}>
+        <div className={styles.job_expanded_container}>
           <div className={styles.left_container}>
             <div className={styles.left_top_container}>
-              <div className="title-container">
+              <div className={styles.title_container}>
                 <input
                   onChange={handleOnChange}
                   name="job_title"
@@ -44,8 +45,10 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
                   onBlur={handleOnBlur}
                 />
               </div>
-              <div className="stars-container">
+              <div className={styles.stars_container}>
+                <label htmlFor="stars">Excitement</label>
                 <Stars
+                  id="stars"
                   star={formData.excitement}
                   jobId={job.id}
                   clickable={true}
@@ -53,9 +56,9 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
                 />
               </div>
             </div>
-            <div className="left-bottom-container">
+            <div className={styles.left_bottom_container}>
               <label htmlFor="job-description">Job Description</label>
-              <input
+              <textarea
                 onChange={handleOnChange}
                 name="job_description"
                 id="job-description"
@@ -79,7 +82,7 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
             />
             <button onClick={handleDelete}>Delete</button>
           </div>
-        </form>
+        </div>
       )}
     </>
   );

@@ -1,9 +1,17 @@
-// Colors
+//* Colors
 $job-container-color: #eeeeee;
 
-// Mixins
+//* Font Sizes
+$label-font-size: 10px;
+
+//* Mixins
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+// Labels
+@mixin label {
+  text-transform: uppercase;
+  font-size: $label-font-size;
 }
