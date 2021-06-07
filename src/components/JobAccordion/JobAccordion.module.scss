@@ -1,0 +1,19 @@
+@import "../../styles/variables.scss";
+
+.job_expanded_container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  width: 100%;
+  margin: 5px 0 5px 0;
+  background-color: $job-container-color;
+
+  .left_container {
+    display: flex;
+    flex-flow: column wrap;
+
+    .left_top_container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

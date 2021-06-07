@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./JobAccordion.module.scss";
 import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
@@ -26,37 +27,44 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
   return (
     <>
       {formData && (
-        <div className="job-expanded-container">
-          <Stars
-            star={formData.excitement}
-            jobId={job.id}
-            clickable={true}
-            setJob={setJob}
-          />
-          <form>
-            <input
-              onChange={handleOnChange}
-              name="job_title"
-              value={formData.job_title}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="company_name"
-              value={formData.company_name}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="job_description"
-              value={formData.job_description}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="excitement"
-              value={formData.excitement}
-            />
+        <form className={styles.job_expanded_container}>
+          <div className={styles.left_container}>
+            <div className={styles.left_top_container}>
+              <div className="title-container">
+                <input
+                  onChange={handleOnChange}
+                  name="job_title"
+                  value={formData.job_title}
+                  onBlur={handleOnBlur}
+                />
+                <input
+                  onChange={handleOnChange}
+                  name="company_name"
+                  value={formData.company_name}
+                  onBlur={handleOnBlur}
+                />
+              </div>
+              <div className="stars-container">
+                <Stars
+                  star={formData.excitement}
+                  jobId={job.id}
+                  clickable={true}
+                  setJob={setJob}
+                />
+              </div>
+            </div>
+            <div className="left-bottom-container">
+              <label htmlFor="job-description">Job Description</label>
+              <input
+                onChange={handleOnChange}
+                name="job_description"
+                id="job-description"
+                value={formData.job_description}
+                onBlur={handleOnBlur}
+              />
+            </div>
+          </div>
+          <div>
             <input
               onChange={handleOnChange}
               name="resume"
@@ -69,9 +77,9 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
               value={formData.coverletter}
               onBlur={handleOnBlur}
             />
-          </form>
-          <button onClick={handleDelete}>Delete</button>
-        </div>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        </form>
       )}
     </>
   );
