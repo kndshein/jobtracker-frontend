@@ -95,8 +95,12 @@ $paddings: 30px;
     padding: $paddings;
 
     .buttons_container {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
       button {
-        @include button(red);
+        @include button(rgb(226, 82, 82));
       }
     }
   }

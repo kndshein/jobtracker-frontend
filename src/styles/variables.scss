@@ -11,6 +11,7 @@ $star-unfilled-color: #bbbbbb;
 }
 
 //* Font Sizes
+$primary-font-size: 1rem;
 $label-font-size: 14px;
 // Job Accordion
 $title-font-size: 24px;
@@ -32,16 +33,16 @@ $star-size: 30px;
 }
 // Buttons
 @mixin button($color) {
-  padding: 5px;
+  padding: 10px;
+  color: white;
   background-color: $color;
   border: none;
   border-radius: 5px;
-
+  font-size: $primary-font-size;
   &:hover {
-    background-color: lighten($color, 20%);
-  }
-
-  &:active {
     background-color: darken($color, 10%);
+  }
+  &:active {
+    transform: scale(0.9);
   }
 }
