@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./JobAccordion.module.scss";
-import { updateForm, deleteJob } from "../../apicalls/JobPage";
+import { updateForm, deleteJob, createJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 
@@ -11,8 +11,11 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
     setFormData(job);
   }, [job]);
 
-  const handleDelete = async (event) => {
-    event.preventDefault();
+  // const handleDuplicate = async () => {
+  //   createJob(setJobList, formData);
+  // };
+
+  const handleDelete = async () => {
     await deleteJob(setJobList, formData.id);
     handleExpand();
   };
@@ -81,6 +84,7 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
               onBlur={handleOnBlur}
             />
             <button onClick={handleDelete}>Delete</button>
+            {/* <button onClick={handleDuplicate}>Duplicate</button> */}
           </div>
         </div>
       )}
