@@ -28,4 +28,5 @@ $star-size: 30px;
 @mixin label {
   text-transform: uppercase;
   font-size: $label-font-size;
+  margin-bottom: 5px;
 }

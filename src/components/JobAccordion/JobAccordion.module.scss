@@ -54,7 +54,6 @@
 
         label {
           @include label;
-          margin-bottom: 5px;
         }
       }
     }
@@ -72,6 +71,14 @@
         height: 200px;
         resize: none;
         background-color: transparent;
+
+        &:focus {
+          background-color: lighten($job-container-color, 0.5%);
+        }
+
+        &:hover {
+          background-color: lighten($job-container-color, 0.5%);
+        }
       }
     }
   }
