@@ -1,5 +1,9 @@
+@import url("https://use.typekit.net/zcp0qsf.css");
+@import "./styles/variables.scss";
+
 body {
   box-sizing: border-box;
+  @include primary-font(400, normal);
 }
 
 .App {

@@ -6,6 +6,11 @@
   width: 100%;
   height: 30px;
   background-color: $job-container-color;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   .title {
     @include flex-center;

@@ -1,8 +1,17 @@
 //* Colors
 $job-container-color: #eeeeee;
 
+//* Fonts
+@mixin primary-font($weight, $style) {
+  font-family: marine, sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+}
+
 //* Font Sizes
 $label-font-size: 10px;
+// Job Accordion
+$title-font-size: 24px;
 
 //* Mixins
 @mixin flex-center {
