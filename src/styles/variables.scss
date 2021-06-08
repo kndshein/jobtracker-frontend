@@ -1,9 +1,47 @@
-// Colors
-$job-container-color: #dfdfdf;
+//* Colors
+$job-container-color: #eeeeee;
+$star-filled-color: rgb(255, 171, 44);
+$star-unfilled-color: #bbbbbb;
 
-// Mixins
+//* Fonts
+@mixin primary-font($weight, $style) {
+  font-family: niveau-grotesk, sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+}
+
+//* Font Sizes
+$label-font-size: 14px;
+// Job Accordion
+$title-font-size: 24px;
+
+//* General Sizes
+$star-size: 30px;
+
+//* Mixins
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+// Labels
+@mixin label {
+  text-transform: uppercase;
+  font-size: $label-font-size;
+  margin-bottom: 5px;
+}
+// Buttons
+@mixin button($color) {
+  padding: 5px;
+  background-color: $color;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: lighten($color, 20%);
+  }
+
+  &:active {
+    background-color: darken($color, 10%);
+  }
 }

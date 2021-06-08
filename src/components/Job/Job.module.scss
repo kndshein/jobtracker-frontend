@@ -5,33 +5,27 @@
   grid-template-columns: 25% 5% 20% 15% 15% 15% 5%;
   width: 100%;
   height: 30px;
-  background-color: $job-container-color;
+  margin-bottom: 5px;
+  // background-color: $job-container-color;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-  .title {
+  & > * {
+    margin-right: 5px;
+    background-color: $job-container-color;
     @include flex-center;
-  }
 
-  .logo_container {
-    @include flex-center;
-
-    .logo {
-      width: 20px;
+    &:last-child {
+      margin: 0;
     }
   }
 
-  .company {
-    @include flex-center;
-  }
-
-  .status {
-    @include flex-center;
-  }
-
-  .excitement {
-    @include flex-center;
-  }
-
-  .arrow {
-    @include flex-center;
+  .logo_container {
+    .logo {
+      width: 20px;
+    }
   }
 }

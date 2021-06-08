@@ -1,14 +1,19 @@
 import React from "react";
+import styles from "./JobAccordion.module.scss";
 import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 
-const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
+const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
   const [formData, setFormData] = React.useState();
 
   React.useEffect(() => {
     setFormData(job);
   }, [job]);
+
+  // const handleDuplicate = async () => {
+  //   createJob(setJobList, formData);
+  // };
 
   const handleDelete = async () => {
     await deleteJob(setJobList, formData.id);
@@ -26,51 +31,65 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
   return (
     <>
       {formData && (
-        <div className="job-expanded-container">
-          <Stars
-            star={formData.excitement}
-            jobId={job.id}
-            clickable={true}
-            setJob={setJob}
-          />
-          <form>
-            <input
-              onChange={handleOnChange}
-              name="job_title"
-              value={formData.job_title}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="company_name"
-              value={formData.company_name}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="job_description"
-              value={formData.job_description}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="excitement"
-              value={formData.excitement}
-            />
-            <input
-              onChange={handleOnChange}
-              name="resume"
-              value={formData.resume}
-              onBlur={handleOnBlur}
-            />
-            <input
-              onChange={handleOnChange}
-              name="coverletter"
-              value={formData.coverletter}
-              onBlur={handleOnBlur}
-            />
-          </form>
-          <button onClick={handleDelete}>Delete</button>
+        <div className={styles.job_expanded_container}>
+          <div className={styles.left_container}>
+            <div className={styles.left_top_container}>
+              <div className={styles.title_container}>
+                <input
+                  onChange={handleOnChange}
+                  name="job_title"
+                  value={formData.job_title}
+                  onBlur={handleOnBlur}
+                />
+                <input
+                  onChange={handleOnChange}
+                  name="company_name"
+                  value={formData.company_name}
+                  onBlur={handleOnBlur}
+                />
+              </div>
+              <div className={styles.stars_container}>
+                <label htmlFor="stars">Excitement</label>
+                <Stars
+                  id="stars"
+                  star={formData.excitement}
+                  jobId={job.id}
+                  clickable={true}
+                  setJob={setJob}
+                />
+              </div>
+            </div>
+            <div className={styles.left_bottom_container}>
+              <label htmlFor={`job-description${index}`}>Job Description</label>
+              <textarea
+                onChange={handleOnChange}
+                name="job_description"
+                id={`job-description${index}`}
+                value={formData.job_description}
+                onBlur={handleOnBlur}
+              />
+            </div>
+          </div>
+          <div className={styles.right_container}>
+            <div className="right-top-container">
+              <input
+                onChange={handleOnChange}
+                name="resume"
+                value={formData.resume}
+                onBlur={handleOnBlur}
+              />
+              <input
+                onChange={handleOnChange}
+                name="coverletter"
+                value={formData.coverletter}
+                onBlur={handleOnBlur}
+              />
+            </div>
+            <div className={styles.buttons_container}>
+              <button onClick={handleDelete}>Delete</button>
+            </div>
+            {/* <button onClick={handleDuplicate}>Duplicate</button> */}
+          </div>
         </div>
       )}
     </>

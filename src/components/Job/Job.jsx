@@ -6,7 +6,7 @@ import { getJob } from "../../apicalls/JobPage";
 import Stars from "../Stars/Stars";
 import JobExpanded from "../JobAccordion/JobAccordion";
 
-const Job = ({ jobId, setJobList }) => {
+const Job = ({ jobId, setJobList, index }) => {
   const [accordionOpen, setAccordionOpen] = React.useState(false);
   const [job, setJob] = React.useState();
 
@@ -53,6 +53,7 @@ const Job = ({ jobId, setJobList }) => {
       </div>
       {accordionOpen && (
         <JobExpanded
+          index={index}
           job={job}
           setJobList={setJobList}
           handleExpand={handleExpand}
