@@ -27,6 +27,7 @@ export const getJob = (setState, id) => {
     },
   })
     .then((data) => {
+      console.log(data.data);
       setState(data.data);
     })
     .catch((error) => {

@@ -10,6 +10,7 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
 
   React.useEffect(() => {
     setFormData(job);
+    console.log(job);
   }, [job]);
 
   // const handleDuplicate = async () => {
@@ -61,7 +62,7 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
               </div>
             </div>
             <div className={styles.left_bottom_container}>
-              <label htmlFor={`job-description${index}`}>Job Description</label>
+              <div className={styles.label}>Job Description</div>
               <textarea
                 onChange={handleOnChange}
                 name="job_description"
