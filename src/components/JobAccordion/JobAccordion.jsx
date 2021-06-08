@@ -4,7 +4,7 @@ import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 
-const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
+const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
   const [formData, setFormData] = React.useState();
 
   React.useEffect(() => {
@@ -57,11 +57,11 @@ const JobExpanded = ({ job, handleExpand, setJobList, setJob }) => {
               </div>
             </div>
             <div className={styles.left_bottom_container}>
-              <label htmlFor="job-description">Job Description</label>
+              <label htmlFor={`job-description${index}`}>Job Description</label>
               <textarea
                 onChange={handleOnChange}
                 name="job_description"
-                id="job-description"
+                id={`job-description${index}`}
                 value={formData.job_description}
                 onBlur={handleOnBlur}
               />

@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 60% 40%;
   width: 100%;
-  margin: 5px 0 5px 0;
+  margin-bottom: 5px;
   background-color: $job-container-color;
 
   .left_container {
@@ -28,7 +28,6 @@
           background-color: transparent;
           border: none;
           border-radius: 5px;
-          outline: none;
           font-size: $title-font-size;
           @include primary-font(400, normal);
 
@@ -68,9 +67,13 @@
       }
 
       textarea {
+        margin-left: -5px;
+        padding: 7px 5px 7px 5px;
         height: 200px;
         resize: none;
         background-color: transparent;
+        border: none;
+        border-radius: 5px;
 
         &:focus {
           background-color: lighten($job-container-color, 0.5%);

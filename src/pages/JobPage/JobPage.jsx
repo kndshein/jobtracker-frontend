@@ -17,7 +17,14 @@ const JobPage = (props) => {
       <div>JOBS</div>
       <div className={styles.jobs_container}>
         {jobList?.map((job, index) => {
-          return <Job key={index} jobId={job.id} setJobList={setJobList} />;
+          return (
+            <Job
+              key={index}
+              index={index}
+              jobId={job.id}
+              setJobList={setJobList}
+            />
+          );
         })}
       </div>
       <JobForm setJobList={setJobList} />
