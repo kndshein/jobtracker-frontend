@@ -8,10 +8,13 @@ $paddings: 30px;
   width: 100%;
   margin-bottom: 5px;
   background-color: $job-container-color;
+  border-bottom-left-radius: $border-radius-L;
+  border-bottom-right-radius: $border-radius-L;
 
   .left_container {
     padding: $paddings;
     background-color: darken($job-container-color, 8%);
+    border-bottom-left-radius: $border-radius-L;
 
     .left_top_container {
       display: flex;
@@ -93,6 +96,12 @@ $paddings: 30px;
     flex-flow: column;
     justify-content: space-between;
     padding: $paddings;
+
+    .right_top_container {
+      & > * {
+        margin-bottom: 10px;
+      }
+    }
 
     .buttons_container {
       display: flex;

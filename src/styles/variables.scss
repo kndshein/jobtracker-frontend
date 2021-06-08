@@ -18,6 +18,9 @@ $title-font-size: 24px;
 
 //* General Sizes
 $star-size: 30px;
+$document-size: 20px;
+$border-radius-L: 10px;
+$border-radius-S: 5px;
 
 //* Mixins
 @mixin flex-center {
@@ -37,7 +40,7 @@ $star-size: 30px;
   color: white;
   background-color: $color;
   border: none;
-  border-radius: 5px;
+  border-radius: $border-radius-S;
   font-size: $primary-font-size;
   &:hover {
     background-color: darken($color, 10%);

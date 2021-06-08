@@ -3,6 +3,7 @@ import styles from "./JobAccordion.module.scss";
 import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
+import Document from "../Document/Document";
 
 const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
   const [formData, setFormData] = React.useState();
@@ -71,19 +72,9 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
             </div>
           </div>
           <div className={styles.right_container}>
-            <div className="right-top-container">
-              <input
-                onChange={handleOnChange}
-                name="resume"
-                value={formData.resume}
-                onBlur={handleOnBlur}
-              />
-              <input
-                onChange={handleOnChange}
-                name="coverletter"
-                value={formData.coverletter}
-                onBlur={handleOnBlur}
-              />
+            <div className={styles.right_top_container}>
+              <Document docuType="resume" />
+              <Document docuType="cover letter" />
             </div>
             <div className={styles.buttons_container}>
               <button onClick={handleDelete}>Delete</button>
