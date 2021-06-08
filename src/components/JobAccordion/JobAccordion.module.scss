@@ -8,24 +8,23 @@
   background-color: $job-container-color;
 
   .left_container {
-    display: flex;
-    flex-flow: column wrap;
+    padding: 30px;
     background-color: darken($job-container-color, 8%);
 
     .left_top_container {
       display: flex;
-      justify-content: space-between;
-      padding: 20px;
+      margin-bottom: 20px;
 
       .title_container {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column;
         width: 100%;
         padding-right: 20px;
 
         input {
           margin-bottom: 5px;
-          padding: 0;
+          margin-left: -5px;
+          padding: 0 5px 0 5px;
           background-color: transparent;
           border: none;
           border-radius: 5px;
@@ -50,13 +49,19 @@
       .stars_container {
         display: flex;
         flex-flow: column wrap;
+        width: 30%;
+        text-align: left;
+
+        label {
+          @include label;
+          margin-bottom: 5px;
+        }
       }
     }
 
     .left_bottom_container {
       display: flex;
       flex-flow: column wrap;
-      padding: 0 20px 20px 20px;
 
       label {
         text-align: left;

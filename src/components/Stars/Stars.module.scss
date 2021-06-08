@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+.stars_container {
+  display: flex;
+  justify-content: space-between;
+
+  & > * {
+    cursor: pointer;
+  }
+
+  .star_filled {
+    width: $star-size;
+    height: $star-size;
+    color: $star-filled-color;
+  }
+  .star_unfilled {
+    width: $star-size;
+    height: $star-size;
+    color: $star-unfilled-color;
+  }
+}
