@@ -30,3 +30,18 @@ $star-size: 30px;
   font-size: $label-font-size;
   margin-bottom: 5px;
 }
+// Buttons
+@mixin button($color) {
+  padding: 5px;
+  background-color: $color;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: lighten($color, 20%);
+  }
+
+  &:active {
+    background-color: darken($color, 10%);
+  }
+}
