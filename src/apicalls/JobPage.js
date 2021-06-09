@@ -137,3 +137,17 @@ export const createTime = (name, date, time, setState, jobId) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const deleteTime = (setState, jobId, timeId) => {
+  axios({
+    method: "delete",
+    url: backendUrl + "/time/" + timeId,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then(() => {
+      getJob(setState, jobId);
+    })
+    .catch((err) => console.log(err));
+};
