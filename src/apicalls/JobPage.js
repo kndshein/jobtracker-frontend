@@ -115,7 +115,25 @@ export const deleteJob = (setState, id) => {
     .then(() => {
       getProfile(setState);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
+};
+
+export const createTime = (setState, jobId) => {
+  axios({
+    method: "post",
+    url: backendUrl + "/job/" + jobId + "/time/",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    data: {
+      timeline_info: {
+        name: "Applied",
+        time: "2021-02-03 8:02:32",
+      },
+    },
+  })
+    .then(() => {
+      getJob(setState, jobId);
+    })
+    .catch((err) => console.log(err));
 };

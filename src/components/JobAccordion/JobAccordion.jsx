@@ -76,7 +76,11 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
             <div className={styles.right_top_container}>
               <Document docuType="resume" />
               <Document docuType="cover letter" />
-              <Status timeline={formData.timeline_times} />
+              <Status
+                timeline={formData.timeline_times}
+                jobId={job.id}
+                setJob={setJob}
+              />
             </div>
             <div className={styles.buttons_container}>
               <button onClick={handleDelete}>Delete</button>

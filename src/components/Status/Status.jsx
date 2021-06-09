@@ -2,17 +2,25 @@ import React from "react";
 import styles from "./Status.module.scss";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { createTime } from "../../apicalls/JobPage";
 
 import Calendar from "../Calendar/Calendar";
 
-const Status = ({ timeline }) => {
+const Status = ({ timeline, setJob, jobId }) => {
   console.log(timeline);
   const [addDate, setAddDate] = React.useState(false);
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState(null);
+  const [time, setTime] = React.useState("");
   console.log(date);
+  console.log(time);
 
   const handleAddDate = () => {
     addDate ? setAddDate(false) : setAddDate(true);
+  };
+
+  const handleCreateTime = () => {
+    setAddDate(false);
+    createTime(setJob, jobId);
   };
 
   return (
@@ -47,7 +55,15 @@ const Status = ({ timeline }) => {
               onClick={handleAddDate}
             />
           )}
-          {addDate && <Calendar date={date} setDate={setDate} />}
+          {addDate && (
+            <Calendar
+              date={date}
+              setDate={setDate}
+              time={time}
+              setTime={setTime}
+              handleCreateTime={handleCreateTime}
+            />
+          )}
         </div>
       </div>
       {timeline
