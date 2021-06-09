@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Calendar.module.scss";
-import DateTimePicker from "react-datetime-picker";
+import DateTimePicker from "react-datetime-picker/dist/entry.nostyle";
 
 const Calendar = ({ date, setDate }) => {
   return (
