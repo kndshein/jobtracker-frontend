@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  // height: 75%;
 
   .label {
     @include label;
@@ -12,6 +13,7 @@
   .input_container {
     display: flex;
     width: 100%;
+
     margin-bottom: 10px;
 
     & > * {
@@ -54,6 +56,8 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      margin: 0;
+      cursor: pointer;
 
       .action_icon {
         width: $document-size;
@@ -62,14 +66,20 @@
     }
   }
 
-  .time_container {
-    display: grid;
-    grid-template-columns: 35% 5% 60%;
+  .times_container {
+    overflow-y: auto;
     width: 100%;
-    text-align: left;
+    height: 125px;
 
-    .time {
-      margin-right: 10px;
+    .time_container {
+      display: grid;
+      grid-template-columns: 35% 5% 60%;
+      width: 100%;
+      text-align: left;
+
+      .time {
+        margin-right: 10px;
+      }
     }
   }
 }

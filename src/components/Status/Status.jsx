@@ -100,21 +100,25 @@ const Status = ({ timeline, setJob, jobId }) => {
           )}
         </div>
       </div>
-      {timeline
-        .sort((a, b) => new Date(b.time) - new Date(a.time))
-        .map((time, index) => {
-          const showTime = new Date(time?.time);
-          return (
-            <div key={index} className={styles.time_container}>
-              <div className={styles.time}>{`${
-                showTime.getMonth() + 1
-              }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
-              <div>•</div>
-              <div className={styles.name}>{time.name}</div>
-              <button onClick={() => handleDeleteTime(time.id)}>Delete</button>
-            </div>
-          );
-        })}
+      <div className={styles.times_container}>
+        {timeline
+          .sort((a, b) => new Date(b.time) - new Date(a.time))
+          .map((time, index) => {
+            const showTime = new Date(time?.time);
+            return (
+              <div key={index} className={styles.time_container}>
+                <div className={styles.time}>{`${
+                  showTime.getMonth() + 1
+                }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
+                <div>•</div>
+                <div className={styles.name}>{time.name}</div>
+                <button onClick={() => handleDeleteTime(time.id)}>
+                  Delete
+                </button>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
