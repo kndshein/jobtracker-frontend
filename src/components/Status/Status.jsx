@@ -1,10 +1,20 @@
 import React from "react";
 import styles from "./Status.module.scss";
-import { AiOutlineCalendar, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FaRegCalendarAlt } from "react-icons/fa";
+
+import Calendar from "../Calendar/Calendar";
 
 const Status = ({ timeline }) => {
   console.log(timeline);
+  const [addDate, setAddDate] = React.useState(false);
+  const [date, setDate] = React.useState(new Date());
+  console.log(date);
+
+  const handleAddDate = () => {
+    addDate ? setAddDate(false) : setAddDate(true);
+  };
+
   return (
     <div className={styles.status_container}>
       <div className={styles.label}>Status</div>
@@ -26,7 +36,18 @@ const Status = ({ timeline }) => {
           </select>
         </div>
         <div className={styles.action_icon_container}>
-          <AiOutlinePlusCircle className={styles.action_icon} />
+          {addDate ? (
+            <AiOutlineMinusCircle
+              className={styles.action_icon}
+              onClick={handleAddDate}
+            />
+          ) : (
+            <AiOutlinePlusCircle
+              className={styles.action_icon}
+              onClick={handleAddDate}
+            />
+          )}
+          {addDate && <Calendar date={date} setDate={setDate} />}
         </div>
       </div>
       {timeline
