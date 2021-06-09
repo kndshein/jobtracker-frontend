@@ -6,7 +6,7 @@
   align-items: flex-start;
   width: 100%;
 
-  .title {
+  .label {
     @include label;
   }
 
@@ -15,18 +15,15 @@
     width: 100%;
 
     & > * {
-      margin-right: 5px;
+      margin-right: 10px;
     }
 
-    .document_logo_container {
+    .document_icon_container {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: lighten($job-container-color, 5%);
-      min-width: calc(10px + #{$document-size});
-      min-height: calc(10px + #{$document-size});
 
-      .document_logo {
+      .document_icon {
         width: $document-size;
         height: $document-size;
       }
@@ -37,7 +34,6 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      max-width: 100% !important;
       background-color: lighten($job-container-color, 5%);
     }
 

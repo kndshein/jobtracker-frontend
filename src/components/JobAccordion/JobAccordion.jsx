@@ -4,13 +4,13 @@ import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
 import Document from "../Document/Document";
+import Status from "../Status/Status";
 
 const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
   const [formData, setFormData] = React.useState();
 
   React.useEffect(() => {
     setFormData(job);
-    console.log(job);
   }, [job]);
 
   // const handleDuplicate = async () => {
@@ -76,6 +76,7 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
             <div className={styles.right_top_container}>
               <Document docuType="resume" />
               <Document docuType="cover letter" />
+              <Status timeline={formData.timeline_times} />
             </div>
             <div className={styles.buttons_container}>
               <button onClick={handleDelete}>Delete</button>

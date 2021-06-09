@@ -6,10 +6,10 @@ import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 const Resume = ({ docuType }) => {
   return (
     <div className={styles.document_container}>
-      <div className={styles.title}>{docuType}</div>
+      <div className={styles.label}>{docuType}</div>
       <div className={styles.content}>
-        <div className={styles.document_logo_container}>
-          <GrDocumentVerified className={styles.document_logo} />
+        <div className={styles.document_icon_container}>
+          <GrDocumentVerified className={styles.document_icon} />
         </div>
         <div className={styles.filename}>
           Joshua Andrepoviasdfasdfasdfasdfasfasasdfasdfasdfasdfdfasdfch -
