@@ -8,6 +8,7 @@ import Calendar from "../Calendar/Calendar";
 
 const Status = ({ timeline, setJob, jobId }) => {
   console.log(timeline);
+  const [name, setName] = React.useState("");
   const [addDate, setAddDate] = React.useState(false);
   const [date, setDate] = React.useState(null);
   const [time, setTime] = React.useState("");
@@ -20,7 +21,11 @@ const Status = ({ timeline, setJob, jobId }) => {
 
   const handleCreateTime = () => {
     setAddDate(false);
-    createTime(setJob, jobId);
+    createTime(name, date, time, setJob, jobId);
+  };
+
+  const handleSelectChange = (event) => {
+    setName(event.target.value);
   };
 
   return (
@@ -31,7 +36,7 @@ const Status = ({ timeline, setJob, jobId }) => {
           <FaRegCalendarAlt className={styles.calendar_icon} />
         </div>
         <div className={styles.dropdown}>
-          <select name="timeline" defaultValue="">
+          <select name="timeline" defaultValue="" onChange={handleSelectChange}>
             <option hidden value="">
               Add next step...
             </option>
@@ -71,10 +76,10 @@ const Status = ({ timeline, setJob, jobId }) => {
         .map((time, index) => {
           return (
             <div key={index} className={styles.time_container}>
-              <div className={styles.time}>{`${time.time.slice(
+              <div className={styles.time}>{`${time?.time?.slice(
                 5,
                 7
-              )}/${time.time.slice(8, 10)}/${time.time.slice(0, 4)}`}</div>
+              )}/${time?.time?.slice(8, 10)}/${time?.time?.slice(0, 4)}`}</div>
               <div>•</div>
               <div className={styles.name}>{time.name}</div>
             </div>

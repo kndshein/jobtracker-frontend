@@ -118,7 +118,7 @@ export const deleteJob = (setState, id) => {
     .catch((err) => console.log(err));
 };
 
-export const createTime = (setState, jobId) => {
+export const createTime = (name, date, time, setState, jobId) => {
   axios({
     method: "post",
     url: backendUrl + "/job/" + jobId + "/time/",
@@ -127,8 +127,8 @@ export const createTime = (setState, jobId) => {
     },
     data: {
       timeline_info: {
-        name: "Applied",
-        time: "2021-02-03 8:02:32",
+        name: name,
+        time: `${date.year}-${date.month}-${date.day} ${time}:00`,
       },
     },
   })
