@@ -17,8 +17,18 @@ const Cal = ({ date, setDate, time, setTime, handleCreateTime }) => {
         calendarClassName={styles.popup_calendar}
         renderFooter={() => (
           <div className={styles.footer_container}>
-            <input type="time" value={time} onChange={handleOnChange} />
-            <button onClick={handleCreateTime}>Add Status</button>
+            <input
+              type="time"
+              className={styles.time_input}
+              value={time}
+              onChange={handleOnChange}
+            />
+            <button
+              className={styles.add_status_button}
+              onClick={handleCreateTime}
+            >
+              Add Status
+            </button>
           </div>
         )}
       />
