@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Status.module.scss";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { BiTrashAlt } from "react-icons/bi";
+import { FiEdit2 } from "react-icons/fi";
 import { createTime, deleteTime } from "../../apicalls/JobPage";
 
 import Calendar from "../Calendar/Calendar";
@@ -111,10 +113,11 @@ const Status = ({ timeline, setJob, jobId }) => {
                   showTime.getMonth() + 1
                 }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
                 <div>•</div>
-                <div className={styles.name}>{time.name}</div>
-                <button onClick={() => handleDeleteTime(time.id)}>
-                  Delete
-                </button>
+                <div>
+                  <div className={styles.name}>{time.name}</div>
+                  <FiEdit2 />
+                  <BiTrashAlt onClick={() => handleDeleteTime(time.id)} />
+                </div>
               </div>
             );
           })}

@@ -57,11 +57,11 @@
       align-items: center;
       position: relative;
       margin: 0;
-      cursor: pointer;
 
       .action_icon {
         width: $document-size;
         height: $document-size;
+        cursor: pointer;
       }
     }
   }
@@ -73,7 +73,7 @@
 
     .time_container {
       display: grid;
-      grid-template-columns: 35% 5% 60%;
+      grid-template-columns: 30% 5% auto;
       width: 100%;
       text-align: left;
 
