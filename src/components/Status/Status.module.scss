@@ -1,0 +1,71 @@
+@import "../../styles/variables.scss";
+
+.status_container {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+
+  .label {
+    @include label;
+  }
+
+  .input_container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+
+    & > * {
+      margin-right: 10px;
+    }
+
+    .calendar_icon_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .calendar_icon {
+        width: $document-size;
+        height: $document-size;
+      }
+    }
+
+    .dropdown {
+      width: 100%;
+
+      select {
+        background-color: lighten($job-container-color, 5%);
+        border: none;
+        padding: 5px 10px 5px 5px;
+        width: 100%;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: inherit;
+        line-height: inherit;
+        cursor: pointer;
+      }
+    }
+
+    .action_icon_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      .action_icon {
+        width: $document-size;
+        height: $document-size;
+      }
+    }
+  }
+
+  .time_container {
+    display: grid;
+    grid-template-columns: 35% 5% 60%;
+    width: 100%;
+    text-align: left;
+
+    .time {
+      margin-right: 10px;
+    }
+  }
+}

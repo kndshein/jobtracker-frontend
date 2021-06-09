@@ -3,6 +3,8 @@ import styles from "./JobAccordion.module.scss";
 import { updateForm, deleteJob } from "../../apicalls/JobPage";
 
 import Stars from "../Stars/Stars";
+import Document from "../Document/Document";
+import Status from "../Status/Status";
 
 const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
   const [formData, setFormData] = React.useState();
@@ -60,7 +62,7 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
               </div>
             </div>
             <div className={styles.left_bottom_container}>
-              <label htmlFor={`job-description${index}`}>Job Description</label>
+              <div className={styles.label}>Job Description</div>
               <textarea
                 onChange={handleOnChange}
                 name="job_description"
@@ -71,19 +73,10 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
             </div>
           </div>
           <div className={styles.right_container}>
-            <div className="right-top-container">
-              <input
-                onChange={handleOnChange}
-                name="resume"
-                value={formData.resume}
-                onBlur={handleOnBlur}
-              />
-              <input
-                onChange={handleOnChange}
-                name="coverletter"
-                value={formData.coverletter}
-                onBlur={handleOnBlur}
-              />
+            <div className={styles.right_top_container}>
+              <Document docuType="resume" />
+              <Document docuType="cover letter" />
+              <Status timeline={formData.timeline_times} />
             </div>
             <div className={styles.buttons_container}>
               <button onClick={handleDelete}>Delete</button>
