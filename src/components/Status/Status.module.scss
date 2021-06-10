@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  // height: 75%;
 
   .label {
     @include label;
@@ -43,6 +44,10 @@
         line-height: inherit;
         cursor: pointer;
       }
+
+      .warning {
+        border: 1px red solid;
+      }
     }
 
     .action_icon_container {
@@ -50,22 +55,33 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      margin: 0;
 
       .action_icon {
         width: $document-size;
         height: $document-size;
+        cursor: pointer;
+
+        &:hover {
+          fill: $add-color;
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+
+      .action_icon_delete {
+        &:hover {
+          fill: $delete-color;
+        }
       }
     }
   }
 
-  .time_container {
-    display: grid;
-    grid-template-columns: 35% 5% 60%;
+  .times_container {
+    overflow-y: auto;
     width: 100%;
-    text-align: left;
-
-    .time {
-      margin-right: 10px;
-    }
+    height: 125px;
   }
 }

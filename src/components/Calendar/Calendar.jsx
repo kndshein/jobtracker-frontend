@@ -1,14 +1,40 @@
 import React from "react";
 import styles from "./Calendar.module.scss";
-import DateTimePicker from "react-datetime-picker/dist/entry.nostyle";
+import "@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css";
+import { Calendar } from "@hassanmojab/react-modern-calendar-datepicker";
 
-const Calendar = ({ date, setDate }) => {
+const Cal = ({ date, setDate, time, setTime, handleCreateTime }) => {
+  const handleOnChange = (event) => {
+    setTime(event.target.value);
+  };
+
   return (
     <div className={styles.calendar}>
-      <DateTimePicker value={date} onChange={setDate} />
-      <button>Add</button>
+      <Calendar
+        value={date}
+        onChange={setDate}
+        colorPrimary="#74be49"
+        shouldHighlightWeekends
+        calendarClassName={styles.popup_calendar}
+        renderFooter={() => (
+          <div className={styles.footer_container}>
+            <input
+              type="time"
+              className={styles.time_input}
+              value={time}
+              onChange={handleOnChange}
+            />
+            <button
+              className={styles.add_status_button}
+              onClick={handleCreateTime}
+            >
+              Add Status
+            </button>
+          </div>
+        )}
+      />
     </div>
   );
 };
 
-export default Calendar;
+export default Cal;

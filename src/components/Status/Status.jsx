@@ -1,18 +1,52 @@
 import React from "react";
 import styles from "./Status.module.scss";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { GrCalendar } from "react-icons/gr";
+import { createTime, deleteTime } from "../../apicalls/JobPage";
 
 import Calendar from "../Calendar/Calendar";
+import Time from "../Time/Time";
 
-const Status = ({ timeline }) => {
-  console.log(timeline);
+const Status = ({ timeline, setJob, jobId }) => {
+  const defaultDate = new Date();
+  const [nameWarning, setNameWarning] = React.useState(false);
+  const [name, setName] = React.useState("");
   const [addDate, setAddDate] = React.useState(false);
-  const [date, setDate] = React.useState(new Date());
-  console.log(date);
+  const [date, setDate] = React.useState({
+    year: defaultDate.getFullYear(),
+    month: defaultDate.getMonth() + 1,
+    day: defaultDate.getDate(),
+  });
+  const [time, setTime] = React.useState(
+    `${defaultDate.getHours()}:${
+      (defaultDate.getMinutes() < 10 ? "0" : "") + defaultDate.getMinutes()
+    }`
+  );
 
   const handleAddDate = () => {
-    addDate ? setAddDate(false) : setAddDate(true);
+    if (addDate) {
+      setAddDate(false);
+    } else {
+      if (name.length > 0) {
+        setNameWarning(false);
+        setAddDate(true);
+      } else {
+        setNameWarning(true);
+      }
+    }
+  };
+
+  const handleCreateTime = () => {
+    setAddDate(false);
+    createTime(name, date, time, setJob, jobId);
+  };
+
+  const handleDeleteTime = (timeId) => {
+    deleteTime(setJob, jobId, timeId);
+  };
+
+  const handleSelectChange = (event) => {
+    setName(event.target.value);
   };
 
   return (
@@ -20,10 +54,15 @@ const Status = ({ timeline }) => {
       <div className={styles.label}>Status</div>
       <div className={styles.input_container}>
         <div className={styles.calendar_icon_container}>
-          <FaRegCalendarAlt className={styles.calendar_icon} />
+          <GrCalendar className={styles.calendar_icon} />
         </div>
         <div className={styles.dropdown}>
-          <select name="timeline" defaultValue="">
+          <select
+            name="timeline"
+            className={nameWarning ? styles.warning : ""}
+            defaultValue=""
+            onChange={handleSelectChange}
+          >
             <option hidden value="">
               Add next step...
             </option>
@@ -38,7 +77,7 @@ const Status = ({ timeline }) => {
         <div className={styles.action_icon_container}>
           {addDate ? (
             <AiOutlineMinusCircle
-              className={styles.action_icon}
+              className={`${styles.action_icon} ${styles.action_icon_delete}`}
               onClick={handleAddDate}
             />
           ) : (
@@ -47,23 +86,22 @@ const Status = ({ timeline }) => {
               onClick={handleAddDate}
             />
           )}
-          {addDate && <Calendar date={date} setDate={setDate} />}
+          {addDate && (
+            <Calendar
+              date={date}
+              setDate={setDate}
+              time={time}
+              setTime={setTime}
+              handleCreateTime={handleCreateTime}
+            />
+          )}
         </div>
       </div>
-      {timeline
-        .sort((a, b) => new Date(b.time) - new Date(a.time))
-        .map((time, index) => {
-          return (
-            <div key={index} className={styles.time_container}>
-              <div className={styles.time}>{`${time.time.slice(
-                5,
-                7
-              )}/${time.time.slice(8, 10)}/${time.time.slice(0, 4)}`}</div>
-              <div>•</div>
-              <div className={styles.name}>{time.name}</div>
-            </div>
-          );
-        })}
+      <div className={styles.times_container}>
+        {timeline.map((time, index) => (
+          <Time key={index} time={time} handleDeleteTime={handleDeleteTime} />
+        ))}
+      </div>
     </div>
   );
 };

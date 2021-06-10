@@ -27,6 +27,9 @@ export const getJob = (setState, id) => {
     },
   })
     .then((data) => {
+      data.data.timeline_times.sort(
+        (a, b) => new Date(b.time) - new Date(a.time)
+      );
       setState(data.data);
     })
     .catch((error) => {
@@ -115,7 +118,39 @@ export const deleteJob = (setState, id) => {
     .then(() => {
       getProfile(setState);
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
+};
+
+export const createTime = (name, date, time, setState, jobId) => {
+  axios({
+    method: "post",
+    url: backendUrl + "/job/" + jobId + "/time/",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+    data: {
+      timeline_info: {
+        name: name,
+        time: `${date.year}-${date.month}-${date.day} ${time}:00`,
+      },
+    },
+  })
+    .then(() => {
+      getJob(setState, jobId);
+    })
+    .catch((err) => console.log(err));
+};
+
+export const deleteTime = (setState, jobId, timeId) => {
+  axios({
+    method: "delete",
+    url: backendUrl + "/time/" + timeId,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then(() => {
+      getJob(setState, jobId);
+    })
+    .catch((err) => console.log(err));
 };

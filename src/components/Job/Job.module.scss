@@ -23,6 +23,16 @@
     }
   }
 
+  &:hover {
+    & > * {
+      background-color: darken($job-container-color, 5%);
+    }
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
   .logo_container {
     .logo {
       width: 20px;

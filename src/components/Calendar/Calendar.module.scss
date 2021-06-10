@@ -1,11 +1,30 @@
 @import "../../styles/variables.scss";
 
 .calendar {
-  display: flex;
-  //   position: absolute;
-  //   top: 50px;
-  //   right: 0px;
-  //   left: -200px;
-  //   padding: 10px;
-  background-color: white;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+
+  .popup_calendar {
+    font-size: 0.6rem;
+    background-color: lighten($job-container-color, 5%);
+  }
+
+  .footer_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px 40px;
+
+    .time_input {
+      display: flex;
+      justify-content: center;
+      // width: 100%;
+      margin-right: 10px;
+      padding: 0 10px 0 10px;
+    }
+
+    .add_status_button {
+      @include button($add-color);
+    }
+  }
 }

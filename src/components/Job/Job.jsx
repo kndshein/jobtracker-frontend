@@ -10,7 +10,7 @@ const Job = ({ jobId, setJobList, index }) => {
   const [accordionOpen, setAccordionOpen] = React.useState(false);
   const [job, setJob] = React.useState();
 
-  const handleExpand = (id) => {
+  const handleExpand = () => {
     accordionOpen ? setAccordionOpen(false) : setAccordionOpen(true);
   };
 
@@ -21,6 +21,8 @@ const Job = ({ jobId, setJobList, index }) => {
 
     handleGetJob();
   }, [jobId]);
+
+  // console.log(job);
 
   return (
     <>

@@ -96,8 +96,11 @@ $paddings: 30px;
     flex-flow: column;
     justify-content: space-between;
     padding: $paddings;
+    height: calc(100% - 60px);
 
     .right_top_container {
+      height: 100%;
+
       & > * {
         margin-bottom: 10px;
       }
@@ -109,7 +112,7 @@ $paddings: 30px;
       width: 100%;
 
       button {
-        @include button(rgb(226, 82, 82));
+        @include button($delete-color);
       }
     }
   }
