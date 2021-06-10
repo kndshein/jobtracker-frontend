@@ -27,6 +27,9 @@ export const getJob = (setState, id) => {
     },
   })
     .then((data) => {
+      data.data.timeline_times.sort(
+        (a, b) => new Date(b.time) - new Date(a.time)
+      );
       setState(data.data);
     })
     .catch((error) => {

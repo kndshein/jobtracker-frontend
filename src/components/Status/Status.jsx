@@ -8,9 +8,7 @@ import Calendar from "../Calendar/Calendar";
 import Time from "../Time/Time";
 
 const Status = ({ timeline, setJob, jobId }) => {
-  console.log(timeline);
   const defaultDate = new Date();
-  console.log(defaultDate);
   const [nameWarning, setNameWarning] = React.useState(false);
   const [name, setName] = React.useState("");
   const [addDate, setAddDate] = React.useState(false);
@@ -24,8 +22,6 @@ const Status = ({ timeline, setJob, jobId }) => {
       (defaultDate.getMinutes() < 10 ? "0" : "") + defaultDate.getMinutes()
     }`
   );
-  console.log(date);
-  console.log(time);
 
   const handleAddDate = () => {
     if (addDate) {
@@ -102,11 +98,9 @@ const Status = ({ timeline, setJob, jobId }) => {
         </div>
       </div>
       <div className={styles.times_container}>
-        {timeline
-          .sort((a, b) => new Date(b.time) - new Date(a.time))
-          .map((time, index) => (
-            <Time key={index} time={time} handleDeleteTime={handleDeleteTime} />
-          ))}
+        {timeline.map((time, index) => (
+          <Time key={index} time={time} handleDeleteTime={handleDeleteTime} />
+        ))}
       </div>
     </div>
   );

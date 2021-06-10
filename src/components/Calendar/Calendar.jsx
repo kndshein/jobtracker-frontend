@@ -13,6 +13,7 @@ const Cal = ({ date, setDate, time, setTime, handleCreateTime }) => {
       <Calendar
         value={date}
         onChange={setDate}
+        colorPrimary="#74be49"
         shouldHighlightWeekends
         calendarClassName={styles.popup_calendar}
         renderFooter={() => (
