@@ -22,6 +22,8 @@ const Job = ({ jobId, setJobList, index }) => {
     handleGetJob();
   }, [jobId]);
 
+  console.log(job);
+
   return (
     <>
       <div

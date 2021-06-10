@@ -23,6 +23,8 @@ const Status = ({ timeline, setJob, jobId }) => {
     }`
   );
 
+  const focusErr = React.useRef(null);
+
   const handleAddDate = () => {
     if (addDate) {
       setAddDate(false);
@@ -32,6 +34,7 @@ const Status = ({ timeline, setJob, jobId }) => {
         setAddDate(true);
       } else {
         setNameWarning(true);
+        focusErr.current.focus();
       }
     }
   };
@@ -59,9 +62,10 @@ const Status = ({ timeline, setJob, jobId }) => {
         <div className={styles.dropdown}>
           <select
             name="timeline"
-            className={nameWarning ? styles.warning : ""}
+            className={!name && nameWarning ? styles.warning : ""}
             defaultValue=""
             onChange={handleSelectChange}
+            ref={focusErr}
           >
             <option hidden value="">
               Add next step...
