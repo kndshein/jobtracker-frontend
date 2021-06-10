@@ -5,6 +5,13 @@ $star-filled-color: rgb(255, 171, 44);
 $star-unfilled-color: #bbbbbb;
 $add-color: #74be49;
 $delete-color: rgb(206, 70, 70);
+// Job Status
+$applied-color: #b4e1ff;
+$phonescreen-color: #cbc5ff;
+$assessment-color: #ffc2af;
+$interview-color: #ffb9fc;
+$offer-color: #acd8ae;
+$reject-color: #000000;
 
 //* Fonts
 @mixin primary-font($weight, $style) {
