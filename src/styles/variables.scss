@@ -3,6 +3,8 @@ $primary-color: #80be5d;
 $job-container-color: #eeeeee;
 $star-filled-color: rgb(255, 171, 44);
 $star-unfilled-color: #bbbbbb;
+$add-color: #74be49;
+$delete-color: rgb(206, 70, 70);
 
 //* Fonts
 @mixin primary-font($weight, $style) {
@@ -12,7 +14,7 @@ $star-unfilled-color: #bbbbbb;
 }
 
 //* Font Sizes
-$primary-font-size: 1rem;
+$primary-font-size: 1.1rem;
 $label-font-size: 14px;
 // Job Accordion
 $title-font-size: 24px;
@@ -42,7 +44,7 @@ $border-radius-S: 5px;
   background-color: $color;
   border: none;
   border-radius: $border-radius-S;
-  font-size: $primary-font-size;
+  font-size: 1rem;
   cursor: pointer;
   &:hover {
     background-color: darken($color, 10%);

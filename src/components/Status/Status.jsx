@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./Status.module.scss";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { BiTrashAlt } from "react-icons/bi";
-import { FiEdit2 } from "react-icons/fi";
+import { GrCalendar } from "react-icons/gr";
 import { createTime, deleteTime } from "../../apicalls/JobPage";
 
 import Calendar from "../Calendar/Calendar";
+import Time from "../Time/Time";
 
 const Status = ({ timeline, setJob, jobId }) => {
   console.log(timeline);
@@ -59,7 +58,7 @@ const Status = ({ timeline, setJob, jobId }) => {
       <div className={styles.label}>Status</div>
       <div className={styles.input_container}>
         <div className={styles.calendar_icon_container}>
-          <FaRegCalendarAlt className={styles.calendar_icon} />
+          <GrCalendar className={styles.calendar_icon} />
         </div>
         <div className={styles.dropdown}>
           <select
@@ -82,7 +81,7 @@ const Status = ({ timeline, setJob, jobId }) => {
         <div className={styles.action_icon_container}>
           {addDate ? (
             <AiOutlineMinusCircle
-              className={styles.action_icon}
+              className={`${styles.action_icon} ${styles.action_icon_delete}`}
               onClick={handleAddDate}
             />
           ) : (
@@ -105,22 +104,9 @@ const Status = ({ timeline, setJob, jobId }) => {
       <div className={styles.times_container}>
         {timeline
           .sort((a, b) => new Date(b.time) - new Date(a.time))
-          .map((time, index) => {
-            const showTime = new Date(time?.time);
-            return (
-              <div key={index} className={styles.time_container}>
-                <div className={styles.time}>{`${
-                  showTime.getMonth() + 1
-                }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
-                <div>•</div>
-                <div>
-                  <div className={styles.name}>{time.name}</div>
-                  <FiEdit2 />
-                  <BiTrashAlt onClick={() => handleDeleteTime(time.id)} />
-                </div>
-              </div>
-            );
-          })}
+          .map((time, index) => (
+            <Time key={index} time={time} handleDeleteTime={handleDeleteTime} />
+          ))}
       </div>
     </div>
   );

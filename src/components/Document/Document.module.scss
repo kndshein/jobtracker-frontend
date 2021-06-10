@@ -35,6 +35,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       background-color: lighten($job-container-color, 5%);
+      font-size: $primary-font-size;
     }
 
     .action_icon_container {
@@ -46,6 +47,10 @@
       .action_icon {
         width: $document-size;
         height: $document-size;
+
+        &:hover {
+          fill: $add-color;
+        }
       }
     }
   }

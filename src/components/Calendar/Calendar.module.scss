@@ -24,7 +24,7 @@
     }
 
     .add_status_button {
-      @include button($primary-color);
+      @include button($add-color);
     }
   }
 }

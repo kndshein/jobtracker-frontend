@@ -112,7 +112,7 @@ $paddings: 30px;
       width: 100%;
 
       button {
-        @include button(rgb(226, 82, 82));
+        @include button($delete-color);
       }
     }
   }
