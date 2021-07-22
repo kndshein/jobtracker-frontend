@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./JobPage.module.scss";
 import { getProfile } from "../../apicalls/JobPage";
 
@@ -6,9 +6,9 @@ import Job from "../../components/Job/Job";
 import JobForm from "../../components/JobForm/JobForm";
 
 const JobPage = (props) => {
-  const [jobList, setJobList] = React.useState(null);
+  const [jobList, setJobList] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getProfile(setJobList);
   }, []);
 

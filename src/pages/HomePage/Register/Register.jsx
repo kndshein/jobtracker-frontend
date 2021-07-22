@@ -1,5 +1,5 @@
-import React from "react";
-import { register } from "../../apicalls/HomePage";
+import React, { useState } from "react";
+import { register } from "../../../apicalls/HomePage-API";
 
 const Register = (props) => {
   const emptyRegisterFormData = {
@@ -9,8 +9,8 @@ const Register = (props) => {
     passwordConfirm: "",
   };
 
-  const [formData, setFormData] = React.useState(emptyRegisterFormData);
-  const [registerMessage, setRegisterMessage] = React.useState("");
+  const [formData, setFormData] = useState(emptyRegisterFormData);
+  const [registerMessage, setRegisterMessage] = useState("");
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -21,7 +21,26 @@ const Register = (props) => {
     if (formData.password !== formData.passwordConfirm) {
       setRegisterMessage("Passwords do not match.");
     } else {
-      register(setRegisterMessage, formData);
+      registerAPICall({
+        registration_info: {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          password_confirmation: formData.passwordConfirm,
+        },
+      });
+    }
+  };
+
+  const registerAPICall = async (data) => {
+    try {
+      const {
+        data: { message, token },
+      } = await register(data);
+      setRegisterMessage(message);
+      sessionStorage.setItem("token", token);
+    } catch (err) {
+      console.log(err);
     }
   };
 
