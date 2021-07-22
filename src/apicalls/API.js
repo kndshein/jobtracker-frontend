@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function api(action, endpoint, data) {
+export default function API(action, endpoint, data) {
   const backendUrl = `http://localhost:3000`;
   const url = backendUrl + endpoint;
 

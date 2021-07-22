@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Job.module.scss";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { getJob } from "../../apicalls/JobPage";
+import { getJob } from "../../../apicalls/JobPage-API";
 
-import Stars from "../Stars/Stars";
-import JobExpanded from "../JobAccordion/JobAccordion";
+import Stars from "../../../components/Stars/Stars";
+import JobExpanded from "../../../components/JobAccordion/JobAccordion";
 
-const Job = ({ jobId, setJobList, index }) => {
-  const [accordionOpen, setAccordionOpen] = React.useState(false);
-  const [job, setJob] = React.useState();
+const Job = (props) => {
+  const { jobId, setJobList, index } = props;
+  const [accordionOpen, setAccordionOpen] = useState(false);
+  const [job, setJob] = useState(null);
 
   const handleExpand = () => {
     accordionOpen ? setAccordionOpen(false) : setAccordionOpen(true);
   };
 
-  React.useEffect(() => {
-    const handleGetJob = () => {
-      getJob(setJob, jobId);
-    };
+  const fetchJobAPI = async () => {
+    try {
+      const { data } = await getJob(jobId);
+      data.timeline_times.sort((a, b) => new Date(b.time) - new Date(a.time));
+      setJob(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    handleGetJob();
-  }, [jobId]);
-
-  // console.log(job);
+  useEffect(() => {
+    fetchJobAPI();
+  }, []);
 
   return (
     <>
