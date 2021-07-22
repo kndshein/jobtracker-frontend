@@ -22,7 +22,7 @@ const Job = ({ jobId, setJobList, index }) => {
     handleGetJob();
   }, [jobId]);
 
-  // console.log(job);
+  console.log(job);
 
   return (
     <>
@@ -39,7 +39,13 @@ const Job = ({ jobId, setJobList, index }) => {
           />
         </div>
         <div className={styles.company}>{job?.company_name}</div>
-        <div className={styles.status}>{job?.timeline_times[0]?.name}</div>
+        <div
+          className={`${styles.status} ${
+            styles[job?.timeline_times[0]?.name.split(" ")[0]]
+          }`}
+        >
+          {job?.timeline_times[0]?.name}
+        </div>
         <div className={styles.excitement}>{job?.excitement}</div>
         <div className={styles.excitement}>
           <Stars

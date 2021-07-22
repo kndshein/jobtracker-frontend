@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Document.module.scss";
 import { GrDocumentVerified } from "react-icons/gr";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+// AiOutlineMinusCircle
 
 const Resume = ({ docuType }) => {
   return (
