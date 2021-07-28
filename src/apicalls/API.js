@@ -15,10 +15,10 @@ export default function API(action, endpoint, data) {
       return axios.get(url, header);
     case "post":
       return axios.post(url, data, header);
-    case "update":
+    case "put":
       return axios.put(url, data, header);
     case "delete":
-      return axios.delete(url, data, header);
+      return axios.delete(url, header);
     default:
       console.log("API does not work, bby.");
   }

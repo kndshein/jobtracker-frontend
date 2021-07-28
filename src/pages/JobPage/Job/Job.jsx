@@ -7,7 +7,7 @@ import Stars from "../../../components/Stars/Stars";
 import JobExpanded from "../../../components/JobAccordion/JobAccordion";
 
 const Job = (props) => {
-  const { jobId, setJobList, index } = props;
+  const { jobId, setJobList, index, handleDelete } = props;
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [job, setJob] = useState(null);
 
@@ -27,7 +27,7 @@ const Job = (props) => {
 
   useEffect(() => {
     fetchJobAPI();
-  }, []);
+  }, [jobId]);
 
   return (
     <>
@@ -65,6 +65,8 @@ const Job = (props) => {
           setJobList={setJobList}
           handleExpand={handleExpand}
           setJob={setJob}
+          handleDelete={handleDelete}
+          fetchJobAPI={fetchJobAPI}
         />
       )}
     </>

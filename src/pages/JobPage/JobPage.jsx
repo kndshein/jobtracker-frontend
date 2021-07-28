@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./JobPage.module.scss";
 import { getUserProfile } from "../../apicalls/UserProfile-API";
+import { deleteJob } from "../../apicalls/JobPage-API";
 
 import Job from "./Job/Job";
-import JobForm from "../../components/JobForm/JobForm";
+import JobForm from "./JobForm/JobForm";
 
 const JobPage = (props) => {
   const [jobList, setJobList] = useState(null);
@@ -14,6 +15,16 @@ const JobPage = (props) => {
         data: { jobs },
       } = await getUserProfile();
       setJobList(jobs);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (jobId) => {
+    console.log(jobId);
+    try {
+      await deleteJob(jobId);
+      fetchUserProfileAPI();
     } catch (err) {
       console.log(err);
     }
@@ -34,11 +45,15 @@ const JobPage = (props) => {
               index={index}
               jobId={job.id}
               setJobList={setJobList}
+              handleDelete={handleDelete}
             />
           );
         })}
       </div>
-      <JobForm setJobList={setJobList} />
+      <JobForm
+        setJobList={setJobList}
+        fetchUserProfileAPI={fetchUserProfileAPI}
+      />
     </>
   );
 };
