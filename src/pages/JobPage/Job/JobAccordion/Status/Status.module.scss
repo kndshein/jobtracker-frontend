@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "../../../../../styles/variables.scss";
 
 .status_container {
   display: flex;
@@ -85,5 +85,42 @@
     overflow-y: auto;
     width: 100%;
     height: 125px;
+
+    .status_time_container {
+      display: grid;
+      grid-template-columns: 30% 5% auto;
+      width: 100%;
+      margin-bottom: 5px;
+      text-align: left;
+
+      .time {
+        margin-right: 10px;
+      }
+
+      .name_container {
+        display: flex;
+
+        .name {
+          margin-right: 10px;
+        }
+
+        .trashcan {
+          display: none;
+          cursor: pointer;
+
+          &:hover {
+            fill: $delete-color;
+          }
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        &:hover .trashcan {
+          display: block;
+        }
+      }
+    }
   }
 }

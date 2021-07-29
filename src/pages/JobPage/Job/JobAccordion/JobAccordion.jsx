@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./JobAccordion.module.scss";
-import { updateJob } from "../../apicalls/JobPage-API";
+import { updateJob } from "../../../../apicalls/JobPage-API";
 
-import Stars from "../Stars/Stars";
-import Document from "../Document/Document";
-import Status from "../Status/Status";
+import Stars from "../../../../utilities/Time/Stars/Stars";
+import Document from "../../../../components/Document/Document";
+import Status from "./Status/Status";
 
 const JobExpanded = (props) => {
   const { index, job, handleDelete, setJob, handleExpand, fetchJobAPI } = props;

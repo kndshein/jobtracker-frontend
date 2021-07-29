@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./Status.module.scss";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { GrCalendar } from "react-icons/gr";
-// import { createTime, deleteTime } from "../../apicalls/JobPage";
-import { createTime, deleteTime } from "../../apicalls/JobPage-API";
+import { createTime, deleteTime } from "../../../../../apicalls/JobPage-API";
+import { BiTrashAlt } from "react-icons/bi";
 
-import Calendar from "../Calendar/Calendar";
-import Time from "../Time/Time";
+import Calendar from "../../../../../components/Calendar/Calendar";
+import Time from "../../../../../utilities/Time/Time";
 
-const Status = ({ timeline, setJob, fetchJobAPI, jobId }) => {
+const Status = ({ timeline, fetchJobAPI, jobId }) => {
   const defaultDate = new Date();
   const [nameWarning, setNameWarning] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -119,7 +119,21 @@ const Status = ({ timeline, setJob, fetchJobAPI, jobId }) => {
       </div>
       <div className={styles.times_container}>
         {timeline.map((time, index) => (
-          <Time key={index} time={time} handleDeleteTime={handleDeleteTime} />
+          <div className={styles.status_time_container}>
+            <Time
+              key={index}
+              time={time.time}
+              handleDeleteTime={handleDeleteTime}
+            />
+            <div>•</div>
+            <div className={styles.name_container}>
+              <div className={styles.name}>{time?.name}</div>
+              <BiTrashAlt
+                className={styles.trashcan}
+                onClick={() => handleDeleteTime(time?.id)}
+              />
+            </div>
+          </div>
         ))}
       </div>
     </div>

@@ -3,8 +3,9 @@ import styles from "./Job.module.scss";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { getJob } from "../../../apicalls/JobPage-API";
 
-import Stars from "../../../components/Stars/Stars";
-import JobExpanded from "../../../components/JobAccordion/JobAccordion";
+import Stars from "../../../utilities/Time/Stars/Stars";
+import JobAccordion from "./JobAccordion/JobAccordion";
+import Time from "../../../utilities/Time/Time";
 
 const Job = (props) => {
   const { jobId, setJobList, index, handleDelete } = props;
@@ -29,8 +30,6 @@ const Job = (props) => {
     fetchJobAPI();
   }, [jobId]);
 
-  const showTime = new Date(job?.timeline_times[0]?.time);
-
   return (
     <>
       <div
@@ -53,9 +52,9 @@ const Job = (props) => {
         >
           {job?.timeline_times[0]?.name}
         </div>
-        <div className={styles.excitement}>{`${
-          showTime.getMonth() + 1
-        }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
+        <div className={styles.excitement}>
+          <Time time={job?.timeline_times[0]?.time} />
+        </div>
         <div className={styles.excitement}>
           <Stars
             star={job?.excitement}
@@ -69,7 +68,7 @@ const Job = (props) => {
         </div>
       </div>
       {accordionOpen && (
-        <JobExpanded
+        <JobAccordion
           index={index}
           job={job}
           setJobList={setJobList}

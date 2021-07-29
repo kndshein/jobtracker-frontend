@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 
 .stars_container {
   display: flex;
@@ -16,12 +16,20 @@
     &:active {
       transform: scale(0.8);
     }
+
+    &:hover {
+      color: darken($star-filled-color, 5%);
+    }
   }
 
   .star_unfilled {
     width: $star-size;
     height: $star-size;
     color: $star-unfilled-color;
+
+    &:hover {
+      color: darken($star-unfilled-color, 5%);
+    }
 
     &:active {
       transform: scale(0.8);

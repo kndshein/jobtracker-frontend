@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Stars.module.scss";
 import { BsStarFill, BsStar } from "react-icons/bs";
-import { updateJob } from "../../apicalls/JobPage-API";
+import { updateJob } from "../../../apicalls/JobPage-API";
 
 const Stars = (props) => {
   const { jobId, star, clickable, setJob } = props;
