@@ -34,6 +34,9 @@
   }
 
   .logo_container {
+    background-color: white;
+    // border: 5px black inset;
+    box-shadow: inset 0 0 0 5px $job-container-color;
     .logo {
       width: 20px;
     }

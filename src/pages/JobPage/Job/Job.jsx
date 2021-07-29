@@ -29,6 +29,8 @@ const Job = (props) => {
     fetchJobAPI();
   }, [jobId]);
 
+  const showTime = new Date(job?.timeline_times[0]?.time);
+
   return (
     <>
       <div
@@ -40,7 +42,7 @@ const Job = (props) => {
           <img
             className={styles.logo}
             alt={`${job?.company_name} logo`}
-            src={`https://logo.clearbit.com/${job?.company_name}.com?size=80&greyscale=true`}
+            src={`https://logo.clearbit.com/${job?.company_name}.com?size=80`}
           />
         </div>
         <div className={styles.company}>{job?.company_name}</div>
@@ -51,7 +53,9 @@ const Job = (props) => {
         >
           {job?.timeline_times[0]?.name}
         </div>
-        <div className={styles.excitement}>{job?.excitement}</div>
+        <div className={styles.excitement}>{`${
+          showTime.getMonth() + 1
+        }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
         <div className={styles.excitement}>
           <Stars
             star={job?.excitement}
