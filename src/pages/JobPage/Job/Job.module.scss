@@ -13,7 +13,7 @@
   user-select: none;
 
   & > * {
-    padding: 5px;
+    padding: 7px;
     margin-right: 5px;
     background-color: $job-container-color;
     @include flex-center;
@@ -36,6 +36,28 @@
   .logo_container {
     .logo {
       width: 20px;
+    }
+  }
+
+  .status {
+    &.Applied {
+      background-color: $applied-color;
+    }
+    &.Phone {
+      background-color: $phonescreen-color;
+    }
+    &.Technical {
+      background-color: $assessment-color;
+    }
+    &.Interview {
+      background-color: $interview-color;
+    }
+    &.Offer {
+      background-color: $offer-color;
+    }
+    &.Rejected {
+      color: white;
+      background-color: $reject-color;
     }
   }
 }

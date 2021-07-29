@@ -39,12 +39,18 @@ const Job = (props) => {
         <div className={styles.logo_container}>
           <img
             className={styles.logo}
-            alt="spotify logo"
-            src="https://logo.clearbit.com/spotify.com?size=80&greyscale=true"
+            alt={`${job?.company_name} logo`}
+            src={`https://logo.clearbit.com/${job?.company_name}.com?size=80&greyscale=true`}
           />
         </div>
         <div className={styles.company}>{job?.company_name}</div>
-        <div className={styles.status}>{job?.timeline_times[0]?.name}</div>
+        <div
+          className={`${styles.status} ${
+            styles[job?.timeline_times[0]?.name.split(" ")[0]]
+          }`}
+        >
+          {job?.timeline_times[0]?.name}
+        </div>
         <div className={styles.excitement}>{job?.excitement}</div>
         <div className={styles.excitement}>
           <Stars
