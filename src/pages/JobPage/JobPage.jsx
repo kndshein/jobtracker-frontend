@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./JobPage.module.scss";
-import { getProfile } from "../../apicalls/JobPage";
+import { getUserProfile } from "../../apicalls/UserProfile-API";
+import { deleteJob } from "../../apicalls/JobPage-API";
 
-import Job from "../../components/Job/Job";
-import JobForm from "../../components/JobForm/JobForm";
+import Job from "./Job/Job";
+import JobForm from "./JobForm/JobForm";
 
 const JobPage = (props) => {
-  const [jobList, setJobList] = React.useState(null);
+  const [jobList, setJobList] = useState(null);
 
-  React.useEffect(() => {
-    getProfile(setJobList);
+  const fetchUserProfileAPI = async () => {
+    try {
+      const {
+        data: { jobs },
+      } = await getUserProfile();
+      setJobList(jobs);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (jobId) => {
+    console.log(jobId);
+    try {
+      await deleteJob(jobId);
+      fetchUserProfileAPI();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserProfileAPI();
   }, []);
 
   return (
@@ -23,11 +45,15 @@ const JobPage = (props) => {
               index={index}
               jobId={job.id}
               setJobList={setJobList}
+              handleDelete={handleDelete}
             />
           );
         })}
       </div>
-      <JobForm setJobList={setJobList} />
+      <JobForm
+        setJobList={setJobList}
+        fetchUserProfileAPI={fetchUserProfileAPI}
+      />
     </>
   );
 };

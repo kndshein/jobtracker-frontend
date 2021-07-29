@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./JobAccordion.module.scss";
-import { updateForm, deleteJob } from "../../apicalls/JobPage";
+import { updateJob } from "../../apicalls/JobPage-API";
 
 import Stars from "../Stars/Stars";
 import Document from "../Document/Document";
 import Status from "../Status/Status";
 
-const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
-  const [formData, setFormData] = React.useState();
+const JobExpanded = (props) => {
+  const { index, job, handleDelete, setJob, handleExpand, fetchJobAPI } = props;
+  const [formData, setFormData] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setFormData(job);
   }, [job]);
-
-  // const handleDuplicate = async () => {
-  //   createJob(setJobList, formData);
-  // };
-
-  const handleDelete = async () => {
-    await deleteJob(setJobList, formData.id);
-    handleExpand();
-  };
 
   const handleOnChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const updateJobRequest = async (key, value) => {
+    try {
+      const { data } = await updateJob(job.id, { job_info: { [key]: value } });
+      data.timeline_times.sort((a, b) => new Date(b.time) - new Date(a.time));
+      setJob(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleOnBlur = (event) => {
-    updateForm(job.id, event.target.name, event.target.value, setJob);
+    updateJobRequest(event.target.name, event.target.value);
   };
 
   return (
@@ -80,12 +82,19 @@ const JobExpanded = ({ index, job, handleExpand, setJobList, setJob }) => {
                 timeline={formData.timeline_times}
                 jobId={job.id}
                 setJob={setJob}
+                fetchJobAPI={fetchJobAPI}
               />
             </div>
             <div className={styles.buttons_container}>
-              <button onClick={handleDelete}>Delete</button>
+              <button
+                onClick={() => {
+                  handleExpand();
+                  handleDelete(job.id);
+                }}
+              >
+                Delete
+              </button>
             </div>
-            {/* <button onClick={handleDuplicate}>Duplicate</button> */}
           </div>
         </div>
       )}

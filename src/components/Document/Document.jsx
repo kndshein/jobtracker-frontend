@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Document.module.scss";
 import { GrDocumentVerified } from "react-icons/gr";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-// AiOutlineMinusCircle
 
 const Resume = ({ docuType }) => {
   return (
@@ -12,10 +11,7 @@ const Resume = ({ docuType }) => {
         <div className={styles.document_icon_container}>
           <GrDocumentVerified className={styles.document_icon} />
         </div>
-        <div className={styles.filename}>
-          Joshua Andrepoviasdfasdfasdfasdfasfasasdfasdfasdfasdfdfasdfch -
-          Resume.pdf
-        </div>
+        <div className={styles.filename}>Sample Document.pdf</div>
         <div className={styles.action_icon_container}>
           <AiOutlinePlusCircle className={styles.action_icon} />
         </div>

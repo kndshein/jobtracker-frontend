@@ -2,12 +2,13 @@ import React from "react";
 import styles from "./Status.module.scss";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { GrCalendar } from "react-icons/gr";
-import { createTime, deleteTime } from "../../apicalls/JobPage";
+// import { createTime, deleteTime } from "../../apicalls/JobPage";
+import { createTime, deleteTime } from "../../apicalls/JobPage-API";
 
 import Calendar from "../Calendar/Calendar";
 import Time from "../Time/Time";
 
-const Status = ({ timeline, setJob, jobId }) => {
+const Status = ({ timeline, setJob, fetchJobAPI, jobId }) => {
   const defaultDate = new Date();
   const [nameWarning, setNameWarning] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -39,13 +40,28 @@ const Status = ({ timeline, setJob, jobId }) => {
     }
   };
 
-  const handleCreateTime = () => {
-    setAddDate(false);
-    createTime(name, date, time, setJob, jobId);
+  const handleCreateTime = async () => {
+    try {
+      await createTime(jobId, {
+        timeline_info: {
+          name: name,
+          time: `${date.year}-${date.month}-${date.day} ${time}:00`,
+        },
+      });
+      setAddDate(false);
+      fetchJobAPI();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleDeleteTime = (timeId) => {
-    deleteTime(setJob, jobId, timeId);
+  const handleDeleteTime = async (timeId) => {
+    try {
+      await deleteTime(timeId);
+      fetchJobAPI();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSelectChange = (event) => {

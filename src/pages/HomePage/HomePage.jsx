@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-import Login from "../../components/Login/Login";
-import Register from "../../components/Register/Register";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
 
 const HomePage = (props) => {
-  const [loginOrRegister, setLoginOrRegister] = React.useState("");
+  const [loginOrRegister, setLoginOrRegister] = useState("");
 
   const handleLoginOrRegister = (input) => {
     setLoginOrRegister(`${input}`);

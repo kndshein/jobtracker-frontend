@@ -1,12 +1,26 @@
 import React from "react";
 import styles from "./Stars.module.scss";
 import { BsStarFill, BsStar } from "react-icons/bs";
-import { updateStar } from "../../apicalls/JobPage";
+import { updateJob } from "../../apicalls/JobPage-API";
 
-const Stars = ({ jobId, star, clickable, setJob }) => {
+const Stars = (props) => {
+  const { jobId, star, clickable, setJob } = props;
+
+  const updateStarRequest = async (num) => {
+    try {
+      const { data } = await updateJob(jobId, {
+        job_info: { excitement: num },
+      });
+      data.timeline_times.sort((a, b) => new Date(b.time) - new Date(a.time));
+      setJob(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleUpdate = (num) => {
     if (clickable) {
-      updateStar(jobId, setJob, num);
+      updateStarRequest(num);
     }
   };
 

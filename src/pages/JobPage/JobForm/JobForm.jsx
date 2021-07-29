@@ -1,7 +1,9 @@
 import React from "react";
-import { createJob } from "../../apicalls/JobPage";
+import { createJob } from "../../../apicalls/JobPage-API";
 
-const JobForm = ({ setJobList }) => {
+const JobForm = (props) => {
+  const { fetchUserProfileAPI } = props;
+
   const emptyFormData = {
     job_title: "",
     company_name: "",
@@ -21,9 +23,20 @@ const JobForm = ({ setJobList }) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const createJobRequest = async () => {
+    try {
+      await createJob({
+        job_info: formData,
+      });
+      fetchUserProfileAPI();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    createJob(setJobList, formData);
+    createJobRequest();
   };
 
   return (

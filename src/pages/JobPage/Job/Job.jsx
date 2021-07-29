@@ -1,28 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Job.module.scss";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { getJob } from "../../apicalls/JobPage";
+import { getJob } from "../../../apicalls/JobPage-API";
 
-import Stars from "../Stars/Stars";
-import JobExpanded from "../JobAccordion/JobAccordion";
+import Stars from "../../../components/Stars/Stars";
+import JobExpanded from "../../../components/JobAccordion/JobAccordion";
 
-const Job = ({ jobId, setJobList, index }) => {
-  const [accordionOpen, setAccordionOpen] = React.useState(false);
-  const [job, setJob] = React.useState();
+const Job = (props) => {
+  const { jobId, setJobList, index, handleDelete } = props;
+  const [accordionOpen, setAccordionOpen] = useState(false);
+  const [job, setJob] = useState(null);
 
   const handleExpand = () => {
     accordionOpen ? setAccordionOpen(false) : setAccordionOpen(true);
   };
 
-  React.useEffect(() => {
-    const handleGetJob = () => {
-      getJob(setJob, jobId);
-    };
+  const fetchJobAPI = async () => {
+    try {
+      const { data } = await getJob(jobId);
+      data.timeline_times.sort((a, b) => new Date(b.time) - new Date(a.time));
+      setJob(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    handleGetJob();
+  useEffect(() => {
+    fetchJobAPI();
   }, [jobId]);
 
-  console.log(job);
+  const showTime = new Date(job?.timeline_times[0]?.time);
 
   return (
     <>
@@ -34,8 +41,8 @@ const Job = ({ jobId, setJobList, index }) => {
         <div className={styles.logo_container}>
           <img
             className={styles.logo}
-            alt="spotify logo"
-            src="https://logo.clearbit.com/spotify.com?size=80&greyscale=true"
+            alt={`${job?.company_name} logo`}
+            src={`https://logo.clearbit.com/${job?.company_name}.com?size=80`}
           />
         </div>
         <div className={styles.company}>{job?.company_name}</div>
@@ -46,7 +53,9 @@ const Job = ({ jobId, setJobList, index }) => {
         >
           {job?.timeline_times[0]?.name}
         </div>
-        <div className={styles.excitement}>{job?.excitement}</div>
+        <div className={styles.excitement}>{`${
+          showTime.getMonth() + 1
+        }/${showTime.getDate()}/${showTime.getFullYear()}`}</div>
         <div className={styles.excitement}>
           <Stars
             star={job?.excitement}
@@ -66,6 +75,8 @@ const Job = ({ jobId, setJobList, index }) => {
           setJobList={setJobList}
           handleExpand={handleExpand}
           setJob={setJob}
+          handleDelete={handleDelete}
+          fetchJobAPI={fetchJobAPI}
         />
       )}
     </>

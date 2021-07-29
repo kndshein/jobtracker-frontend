@@ -1,6 +1,5 @@
 import React from "react";
-
-import { login } from "../../apicalls/HomePage";
+import { login } from "../../../apicalls/HomePage-API";
 
 const Login = (props) => {
   const emptyLoginFormData = {
@@ -17,7 +16,24 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(setLoginMessage, formData);
+    loginAPICall({
+      login_info: {
+        email: formData.email,
+        password: formData.password,
+      },
+    });
+  };
+
+  const loginAPICall = async (data) => {
+    try {
+      const {
+        data: { message, token },
+      } = await login(data);
+      setLoginMessage(message);
+      sessionStorage.setItem("token", token);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
