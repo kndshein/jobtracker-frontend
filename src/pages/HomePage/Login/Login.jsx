@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { login } from "../../../apicalls/HomePage-API";
+import { UserProfileContext } from "../../../context-global/UserProfileContext";
 
 const Login = (props) => {
+  const { dispatch } = useContext(UserProfileContext);
   const emptyLoginFormData = {
     email: "",
     password: "",
@@ -31,6 +33,10 @@ const Login = (props) => {
       } = await login(data);
       setLoginMessage(message);
       sessionStorage.setItem("token", token);
+      dispatch({
+        type: "LOGIN",
+        payload: true,
+      });
     } catch (err) {
       console.log(err);
     }

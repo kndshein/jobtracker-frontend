@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserProfileContext } from "../../context-global/UserProfileContext";
 
 const Navbar = (props) => {
+  const { dispatch } = useContext(UserProfileContext);
+
+  const logout = () => {
+    sessionStorage.setItem("token", null);
+    dispatch({
+      type: "LOGIN",
+      payload: false,
+    });
+  };
+
   return (
     <div className="navbar">
       <ul>
@@ -12,6 +23,7 @@ const Navbar = (props) => {
           <Link to="/jobs">Jobs</Link>
         </li>
       </ul>
+      <button onClick={logout}>Logout</button>
     </div>
   );
 };
