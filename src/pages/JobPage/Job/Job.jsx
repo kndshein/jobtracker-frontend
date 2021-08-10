@@ -52,8 +52,10 @@ const Job = (props) => {
         >
           {job?.timeline_times[0]?.name}
         </div>
-        <div className={styles.excitement}>
-          <Time time={job?.timeline_times[0]?.time} />
+        <div className={styles.time}>
+          {job?.timeline_times[0] && (
+            <Time time={job?.timeline_times[0]?.time} />
+          )}
         </div>
         <div className={styles.excitement}>
           <Stars

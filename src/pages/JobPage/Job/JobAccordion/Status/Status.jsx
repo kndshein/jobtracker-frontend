@@ -119,12 +119,8 @@ const Status = ({ timeline, fetchJobAPI, jobId }) => {
       </div>
       <div className={styles.times_container}>
         {timeline.map((time, index) => (
-          <div className={styles.status_time_container}>
-            <Time
-              key={index}
-              time={time.time}
-              handleDeleteTime={handleDeleteTime}
-            />
+          <div key={index} className={styles.status_time_container}>
+            <Time time={time.time} handleDeleteTime={handleDeleteTime} />
             <div>•</div>
             <div className={styles.name_container}>
               <div className={styles.name}>{time?.name}</div>

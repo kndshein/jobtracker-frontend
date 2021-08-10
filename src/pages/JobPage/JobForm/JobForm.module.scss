@@ -1,0 +1,13 @@
+@import "../../../styles/variables.scss";
+
+.job_form_container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 200px;
+  margin-right: 200px;
+
+  form {
+    display: flex;
+    flex-flow: column;
+  }
+}

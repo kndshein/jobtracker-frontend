@@ -13,7 +13,7 @@ $paddings: 30px;
 
   .left_container {
     padding: $paddings;
-    background-color: darken($job-container-color, 8%);
+    background-color: darken($job-container-color, 5%);
     border-bottom-left-radius: $border-radius-L;
 
     .left_top_container {

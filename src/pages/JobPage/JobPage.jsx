@@ -36,7 +36,6 @@ const JobPage = (props) => {
 
   return (
     <>
-      <div>JOBS</div>
       <div className={styles.jobs_container}>
         {jobList?.map((job, index) => {
           return (
