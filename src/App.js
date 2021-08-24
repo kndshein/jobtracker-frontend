@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router";
 import "./App.scss";
 
 // Component imports
@@ -7,19 +8,23 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import JobPage from "./pages/JobPage/JobPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 
-const backendUrl = "http://localhost:3000";
+// Provider imports
+import { UserProfileContext } from "./context-global/UserProfileContext";
 
 function App() {
+  const { state } = useContext(UserProfileContext);
+
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Switch>
           <Route exact path="/">
-            <HomePage backendUrl={backendUrl} />
+            <HomePage />
           </Route>
+
           <Route path="/jobs">
-            <JobPage backendUrl={backendUrl} />
+            {!state.isLoggedIn ? <Redirect to="/" /> : <JobPage />}
           </Route>
         </Switch>
       </div>

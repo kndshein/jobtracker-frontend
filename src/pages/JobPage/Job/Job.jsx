@@ -19,7 +19,7 @@ const Job = (props) => {
   const fetchJobAPI = async () => {
     try {
       const { data } = await getJob(jobId);
-      data.timeline_times.sort((a, b) => new Date(b.time) - new Date(a.time));
+      data?.timeline_times.sort((a, b) => new Date(b.time) - new Date(a.time));
       setJob(data);
     } catch (err) {
       console.log(err);
