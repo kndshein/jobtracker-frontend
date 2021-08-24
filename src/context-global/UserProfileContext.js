@@ -4,18 +4,26 @@ import { getUserProfile } from "../apicalls/UserProfile-API";
 
 const UserProfileContext = createContext();
 
+const types = {
+  login: "LOGIN",
+  set_user: "SET_USER",
+};
+
 const initialUserProfileState = {
   user: null,
   isLoggedIn: false,
 };
 
-
 const UserProfileReducer = (state, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case types.login:
       return { ...state, isLoggedIn: action.payload };
-    case "SET_USER":
-      return { ...state, user: action.payload };
+    case types.set_user:
+      return {
+        ...state,
+        isLoggedIn: action.payload ? true : false,
+        user: action.payload,
+      };
     default:
       throw new Error();
   }
@@ -27,21 +35,21 @@ const UserProfileProvider = (props) => {
     initialUserProfileState
   );
 
-  const token = useMemo(() => {
-    return sessionStorage.getItem("token");
-  }, []);
+  // const token = useMemo(() => {
+  //   return sessionStorage.getItem("token");
+  // }, []);
 
   const fetchUserProfileAPI = async () => {
     try {
       const { data } = await getUserProfile();
 
       dispatch({
-        type: "SET_USER",
+        type: types.set_user,
         payload: data,
       });
     } catch (err) {
       dispatch({
-        type: "SET_USER",
+        type: types.set_user,
         payload: null,
       });
 
@@ -50,16 +58,14 @@ const UserProfileProvider = (props) => {
   };
 
   useEffect(() => {
-    if (state.isLoggedIn) {
-      fetchUserProfileAPI();
-    } else {
-      console.log("There is no token");
-    }
+    fetchUserProfileAPI();
   }, [state.isLoggedIn]);
 
   const { Provider } = UserProfileContext;
 
-  return <Provider value={{ ...state, dispatch }}>{props.children}</Provider>;
+  return (
+    <Provider value={{ types, state, dispatch }}>{props.children}</Provider>
+  );
 };
 
 export { UserProfileContext, UserProfileProvider };

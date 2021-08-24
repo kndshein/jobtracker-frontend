@@ -3,7 +3,8 @@ import { login } from "../../../apicalls/HomePage-API";
 import { UserProfileContext } from "../../../context-global/UserProfileContext";
 
 const Login = (props) => {
-  const { dispatch } = useContext(UserProfileContext);
+  const { types, dispatch } = useContext(UserProfileContext);
+
   const emptyLoginFormData = {
     email: "",
     password: "",
@@ -34,7 +35,7 @@ const Login = (props) => {
       setLoginMessage(message);
       sessionStorage.setItem("token", token);
       dispatch({
-        type: "LOGIN",
+        type: types.login,
         payload: true,
       });
     } catch (err) {

@@ -4,9 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import { UserProfileProvider } from "./context-global/UserProfileContext";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProfileProvider>
+      <App />
+    </UserProfileProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

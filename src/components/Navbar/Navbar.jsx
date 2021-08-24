@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { UserProfileContext } from "../../context-global/UserProfileContext";
 
 const Navbar = (props) => {
-  const { dispatch } = useContext(UserProfileContext);
+  const { types, dispatch } = useContext(UserProfileContext);
 
   const logout = () => {
     sessionStorage.setItem("token", null);
     dispatch({
-      type: "LOGIN",
+      type: types.login,
       payload: false,
     });
   };
