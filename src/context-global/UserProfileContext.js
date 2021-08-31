@@ -11,7 +11,7 @@ const types = {
 
 const initialUserProfileState = {
   user: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 const UserProfileReducer = (state, action) => {

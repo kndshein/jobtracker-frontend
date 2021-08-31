@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { register } from "../../../apicalls/HomePage-API";
+import { UserProfileContext } from "../../../context-global/UserProfileContext";
 
 const Register = (props) => {
+  const { types, dispatch } = useContext(UserProfileContext);
+
   const emptyRegisterFormData = {
     email: "",
     name: "",
@@ -39,6 +42,10 @@ const Register = (props) => {
       } = await register(data);
       setRegisterMessage(message);
       sessionStorage.setItem("token", token);
+      dispatch({
+        type: types.login,
+        payload: true,
+      });
     } catch (err) {
       console.log(err);
     }

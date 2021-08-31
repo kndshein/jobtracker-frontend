@@ -24,7 +24,7 @@ function App() {
           </Route>
 
           <Route path="/jobs">
-            {!state.isLoggedIn ? <Redirect to="/" /> : <JobPage />}
+            {state.isLoggedIn ? <JobPage /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </div>
